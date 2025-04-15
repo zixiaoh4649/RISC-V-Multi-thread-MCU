@@ -27,7 +27,7 @@ module Testbench;
 	integer exec_count;
 	integer i;
 	integer clk_count;
-	integer a,b,c,d;
+	integer a,b,c,d,e;
 
 	// logic [2:0] dispatch_threads[NUM_ALUs-1:0];  //mod
 
@@ -59,23 +59,26 @@ module Testbench;
 		end
 	end
 
-
+    always @(*)begin
+		e=0;
+        for (i = 0; i < NUM_ALUs; i = i + 1) begin
+            if(dispatch_threads[i] < 3'd4)
+               e++;
+		end
+	end
 
 	always @(posedge clk) begin
       if (~rst)
 		exec_count <= 0;
 	  else 
-        for (i = 0; i < NUM_ALUs; i = i + 1) begin
-            if (dispatch_threads[i] < 3'd4)
-               exec_count <= exec_count + 1;
-        end     
+	    exec_count <= exec_count + e;
    end
 
 
 
 	real ipc;
 	initial begin
-		#10000;  
+		#500;  
 		ipc = exec_count * 1.0 / clk_count; 
 		$display("Total inst count: %0d", exec_count);
 		$display("Total cycles: %0d", clk_count);
@@ -86,16 +89,16 @@ module Testbench;
 
 
 	initial begin
-		$readmemh("./inst_txt/current.txt", Testbench.RISCV_soc_inst.rom_inst.rom_mem[0]);
+		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/rv32ui-p-add.txt", Testbench.RISCV_soc_inst.rom_inst.rom_mem[0]);
 	end
 	initial begin
-		$readmemh("./inst_txt/current.txt", Testbench.RISCV_soc_inst.rom_inst.rom_mem[1]);
+		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/rv32ui-p-sub.txt", Testbench.RISCV_soc_inst.rom_inst.rom_mem[1]);
 	end
 	initial begin
-		$readmemh("./inst_txt/current.txt", Testbench.RISCV_soc_inst.rom_inst.rom_mem[2]);
+		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/rv32ui-p-slti.txt", Testbench.RISCV_soc_inst.rom_inst.rom_mem[2]);
 	end
 	initial begin
-		$readmemh("./inst_txt/current.txt", Testbench.RISCV_soc_inst.rom_inst.rom_mem[3]);
+		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/rv32ui-p-and.txt", Testbench.RISCV_soc_inst.rom_inst.rom_mem[3]);
 	end
 
 
@@ -131,7 +134,7 @@ end
 	initial begin
 			wait(x26_thread0 == 32'b1);
 			
-			#250;
+			#24;
 			if(x27_thread0 == 32'b1)begin
 				$display("@@@@ Thread0 pass @@@@");
 				a = 1;
@@ -146,7 +149,7 @@ end
 		initial begin
 			wait(x26_thread1 == 32'b1);
 			
-			#250;
+			#24;
 			if(x27_thread1 == 32'b1)begin
 				$display("@@@@ Thread1 pass @@@@");
 				b = 1;
@@ -161,7 +164,7 @@ end
 			initial begin
 			wait(x26_thread2 == 32'b1);
 			
-			#250;
+			#24;
 			if(x27_thread2 == 32'b1)begin
 				$display("@@@@ Thread2 pass @@@@");
 				c = 1;
@@ -176,7 +179,7 @@ end
 			initial begin
 			wait(x26_thread3 == 32'b1);
 			
-			#250;
+			#24;
 			if(x27_thread3 == 32'b1)begin
 				$display("@@@@ Thread3 pass @@@@");
 				d = 1;
