@@ -1,0 +1,60 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : cpu
+Version: W-2024.09
+Date   : Sun Apr 27 10:13:42 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: enclosed
+
+  Startpoint: rst (input port clocked by my_clk)
+  Endpoint: id_inst/op2_ex_reg_2__21_
+            (rising edge-triggered flip-flop clocked by my_clk)
+  Path Group: my_clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  cpu                5K_hvratio_1_1        NangateOpenCellLibrary
+  regs               5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clk (rise edge)                            0.000000   0.000000
+  clock network delay (ideal)                         0.000000   0.000000
+  input external delay                                1.500000   1.500000 f
+  rst (in)                                            0.000000   1.500000 f
+  U157/Z (BUF_X1)                                     0.033989   1.533989 f
+  regs_inst/rst (regs)                                0.000000   1.533989 f
+  regs_inst/U140/Z (BUF_X2)                           0.050432   1.584421 f
+  regs_inst/U86/Z (BUF_X1)                            0.044772   1.629193 f
+  regs_inst/U85/ZN (AND2_X1)                          0.043974   1.673167 f
+  regs_inst/U133/ZN (NAND2_X1)                        0.038486   1.711653 r
+  regs_inst/U1779/Z (BUF_X2)                          0.063723   1.775376 r
+  regs_inst/U169/ZN (NOR2_X1)                         0.030142   1.805517 f
+  regs_inst/U132/ZN (OR2_X1)                          0.051583   1.857100 f
+  regs_inst/rs2_data[85] (regs)                       0.000000   1.857100 f
+  U2125/ZN (AOI21_X1)                                 0.039596   1.896696 r
+  id_inst/op2_ex_reg_2__21_/SE (SDFF_X1)              0.013716   1.910413 r
+  data arrival time                                              1.910413
+
+  clock my_clk (rise edge)                            2.000000   2.000000
+  clock network delay (ideal)                         0.000000   2.000000
+  id_inst/op2_ex_reg_2__21_/CK (SDFF_X1)              0.000000   2.000000 r
+  library setup time                                  -0.089306  1.910694
+  data required time                                             1.910694
+  --------------------------------------------------------------------------
+  data required time                                             1.910694
+  data arrival time                                              -1.910413
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.000282
+
+
+1

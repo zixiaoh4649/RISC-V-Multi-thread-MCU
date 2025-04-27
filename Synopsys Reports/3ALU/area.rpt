@@ -1,0 +1,334 @@
+ 
+****************************************
+Report : area
+Design : cpu
+Version: W-2024.09
+Date   : Sun Apr 27 00:14:04 2025
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /class/ece411/freepdk-45nm/stdcells.db)
+
+Number of ports:                         2631
+Number of nets:                         40818
+Number of cells:                        37977
+Number of combinational cells:          31072
+Number of sequential cells:              6733
+Number of macros/black boxes:               0
+Number of buf/inv:                       4484
+Number of references:                      64
+
+Combinational area:              31781.148105
+Buf/Inv area:                     2888.494005
+Noncombinational area:           39851.853680
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                 71633.001785
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  -------------------  ------------------------------ 
+Hierarchical cell                 Absolute    Percent  Combi-      Noncombi-   Black-
+                                  Total       Total    national    national    boxes   Design
+--------------------------------  ----------  -------  ----------  ----------  ------  -------------------------------
+cpu                               71633.0018    100.0   2486.8340   5898.5500  0.0000  cpu
+dispatch_ex/clk_gate_dont_dispatch_reg_3_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_dispatch_4
+dispatch_ex/clk_gate_wait_cnt_reg_reg_0__3_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_dispatch_3
+dispatch_ex/clk_gate_wait_cnt_reg_reg_1__3_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_dispatch_2
+dispatch_ex/clk_gate_wait_cnt_reg_reg_2__3_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_dispatch_1
+dispatch_ex/clk_gate_wait_cnt_reg_reg_3__3_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_dispatch_0
+dispatch_ex/clk_gate_weight_reg_reg_3__3_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_dispatch_5
+ex_inst                           28270.2139     39.5  14293.2440   8460.1299  0.0000  ex
+ex_inst/ALU_thread0                2509.1780      3.5   2509.1780      0.0000  0.0000  ALU_2
+ex_inst/ALU_thread1                2991.7020      4.2   2991.7020      0.0000  0.0000  ALU_1
+ex_inst/clk_gate_oh_queue_reg_0__2__6_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ex_1
+ex_inst/clk_gate_oh_queue_reg_1__2__6_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ex_2
+ex_inst/clk_gate_oh_queue_reg_2__2__6_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ex_3
+ex_inst/clk_gate_oh_queue_reg_3__2__6_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ex_0
+ifetch_inst/clk_gate_jump_count_reg_0__2_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ifetch_1
+ifetch_inst/clk_gate_jump_count_reg_1__2_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ifetch_2
+ifetch_inst/clk_gate_jump_count_reg_2__2_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ifetch_3
+ifetch_inst/clk_gate_jump_count_reg_3__2_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ifetch_4
+ifetch_inst/clk_gate_pc_o_reg_0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ifetch_6
+ifetch_inst/clk_gate_pc_o_reg_1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ifetch_7
+ifetch_inst/clk_gate_pc_o_reg_2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ifetch_8
+ifetch_inst/clk_gate_pc_o_reg_3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ifetch_0
+ifetch_inst/clk_gate_rst_count_reg_2_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_ifetch_5
+regs_inst                         34917.5539     48.7   9500.1901  24922.6038  0.0000  regs
+regs_inst/clk_gate_regs_reg_10__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_88
+regs_inst/clk_gate_regs_reg_10__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_87
+regs_inst/clk_gate_regs_reg_10__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_86
+regs_inst/clk_gate_regs_reg_10__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_85
+regs_inst/clk_gate_regs_reg_11__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_84
+regs_inst/clk_gate_regs_reg_11__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_83
+regs_inst/clk_gate_regs_reg_11__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_82
+regs_inst/clk_gate_regs_reg_11__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_81
+regs_inst/clk_gate_regs_reg_12__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_80
+regs_inst/clk_gate_regs_reg_12__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_79
+regs_inst/clk_gate_regs_reg_12__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_78
+regs_inst/clk_gate_regs_reg_12__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_77
+regs_inst/clk_gate_regs_reg_13__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_76
+regs_inst/clk_gate_regs_reg_13__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_75
+regs_inst/clk_gate_regs_reg_13__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_74
+regs_inst/clk_gate_regs_reg_13__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_73
+regs_inst/clk_gate_regs_reg_14__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_72
+regs_inst/clk_gate_regs_reg_14__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_71
+regs_inst/clk_gate_regs_reg_14__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_70
+regs_inst/clk_gate_regs_reg_14__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_69
+regs_inst/clk_gate_regs_reg_15__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_68
+regs_inst/clk_gate_regs_reg_15__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_67
+regs_inst/clk_gate_regs_reg_15__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_66
+regs_inst/clk_gate_regs_reg_15__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_65
+regs_inst/clk_gate_regs_reg_16__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_64
+regs_inst/clk_gate_regs_reg_16__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_63
+regs_inst/clk_gate_regs_reg_16__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_62
+regs_inst/clk_gate_regs_reg_16__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_61
+regs_inst/clk_gate_regs_reg_17__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_60
+regs_inst/clk_gate_regs_reg_17__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_59
+regs_inst/clk_gate_regs_reg_17__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_58
+regs_inst/clk_gate_regs_reg_17__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_57
+regs_inst/clk_gate_regs_reg_18__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_56
+regs_inst/clk_gate_regs_reg_18__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_55
+regs_inst/clk_gate_regs_reg_18__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_54
+regs_inst/clk_gate_regs_reg_18__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_53
+regs_inst/clk_gate_regs_reg_19__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_52
+regs_inst/clk_gate_regs_reg_19__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_51
+regs_inst/clk_gate_regs_reg_19__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_50
+regs_inst/clk_gate_regs_reg_19__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_49
+regs_inst/clk_gate_regs_reg_1__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_124
+regs_inst/clk_gate_regs_reg_1__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_123
+regs_inst/clk_gate_regs_reg_1__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_122
+regs_inst/clk_gate_regs_reg_1__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_121
+regs_inst/clk_gate_regs_reg_20__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_48
+regs_inst/clk_gate_regs_reg_20__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_47
+regs_inst/clk_gate_regs_reg_20__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_46
+regs_inst/clk_gate_regs_reg_20__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_45
+regs_inst/clk_gate_regs_reg_21__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_44
+regs_inst/clk_gate_regs_reg_21__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_43
+regs_inst/clk_gate_regs_reg_21__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_42
+regs_inst/clk_gate_regs_reg_21__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_41
+regs_inst/clk_gate_regs_reg_22__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_40
+regs_inst/clk_gate_regs_reg_22__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_39
+regs_inst/clk_gate_regs_reg_22__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_38
+regs_inst/clk_gate_regs_reg_22__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_37
+regs_inst/clk_gate_regs_reg_23__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_36
+regs_inst/clk_gate_regs_reg_23__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_35
+regs_inst/clk_gate_regs_reg_23__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_34
+regs_inst/clk_gate_regs_reg_23__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_33
+regs_inst/clk_gate_regs_reg_24__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_32
+regs_inst/clk_gate_regs_reg_24__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_31
+regs_inst/clk_gate_regs_reg_24__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_30
+regs_inst/clk_gate_regs_reg_24__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_29
+regs_inst/clk_gate_regs_reg_25__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_28
+regs_inst/clk_gate_regs_reg_25__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_27
+regs_inst/clk_gate_regs_reg_25__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_26
+regs_inst/clk_gate_regs_reg_25__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_25
+regs_inst/clk_gate_regs_reg_26__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_24
+regs_inst/clk_gate_regs_reg_26__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_23
+regs_inst/clk_gate_regs_reg_26__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_22
+regs_inst/clk_gate_regs_reg_26__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_21
+regs_inst/clk_gate_regs_reg_27__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_20
+regs_inst/clk_gate_regs_reg_27__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_19
+regs_inst/clk_gate_regs_reg_27__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_18
+regs_inst/clk_gate_regs_reg_27__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_17
+regs_inst/clk_gate_regs_reg_28__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_16
+regs_inst/clk_gate_regs_reg_28__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_15
+regs_inst/clk_gate_regs_reg_28__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_14
+regs_inst/clk_gate_regs_reg_28__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_13
+regs_inst/clk_gate_regs_reg_29__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_12
+regs_inst/clk_gate_regs_reg_29__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_11
+regs_inst/clk_gate_regs_reg_29__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_10
+regs_inst/clk_gate_regs_reg_29__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_9
+regs_inst/clk_gate_regs_reg_2__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_120
+regs_inst/clk_gate_regs_reg_2__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_119
+regs_inst/clk_gate_regs_reg_2__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_118
+regs_inst/clk_gate_regs_reg_2__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_117
+regs_inst/clk_gate_regs_reg_30__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_8
+regs_inst/clk_gate_regs_reg_30__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_7
+regs_inst/clk_gate_regs_reg_30__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_6
+regs_inst/clk_gate_regs_reg_30__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_5
+regs_inst/clk_gate_regs_reg_31__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_4
+regs_inst/clk_gate_regs_reg_31__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_3
+regs_inst/clk_gate_regs_reg_31__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_2
+regs_inst/clk_gate_regs_reg_31__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_1
+regs_inst/clk_gate_regs_reg_3__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_116
+regs_inst/clk_gate_regs_reg_3__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_115
+regs_inst/clk_gate_regs_reg_3__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_114
+regs_inst/clk_gate_regs_reg_3__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_113
+regs_inst/clk_gate_regs_reg_4__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_112
+regs_inst/clk_gate_regs_reg_4__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_111
+regs_inst/clk_gate_regs_reg_4__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_110
+regs_inst/clk_gate_regs_reg_4__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_109
+regs_inst/clk_gate_regs_reg_5__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_108
+regs_inst/clk_gate_regs_reg_5__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_107
+regs_inst/clk_gate_regs_reg_5__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_106
+regs_inst/clk_gate_regs_reg_5__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_105
+regs_inst/clk_gate_regs_reg_6__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_104
+regs_inst/clk_gate_regs_reg_6__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_103
+regs_inst/clk_gate_regs_reg_6__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_102
+regs_inst/clk_gate_regs_reg_6__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_101
+regs_inst/clk_gate_regs_reg_7__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_100
+regs_inst/clk_gate_regs_reg_7__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_99
+regs_inst/clk_gate_regs_reg_7__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_98
+regs_inst/clk_gate_regs_reg_7__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_97
+regs_inst/clk_gate_regs_reg_8__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_96
+regs_inst/clk_gate_regs_reg_8__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_95
+regs_inst/clk_gate_regs_reg_8__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_94
+regs_inst/clk_gate_regs_reg_8__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_93
+regs_inst/clk_gate_regs_reg_9__0__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_92
+regs_inst/clk_gate_regs_reg_9__1__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_91
+regs_inst/clk_gate_regs_reg_9__2__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_90
+regs_inst/clk_gate_regs_reg_9__3__31_
+                                      3.9900      0.0      0.0000      3.9900  0.0000  SNPS_CLOCK_GATE_HIGH_regs_89
+--------------------------------  ----------  -------  ----------  ----------  ------  -------------------------------
+Total                                                  31781.1481  39851.8537  0.0000
+
+1

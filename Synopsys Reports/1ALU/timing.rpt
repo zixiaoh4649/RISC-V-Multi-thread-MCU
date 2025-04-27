@@ -1,0 +1,109 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : cpu
+Version: W-2024.09
+Date   : Sun Apr 27 00:36:05 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: enclosed
+
+  Startpoint: ex_inst/R_4
+              (rising edge-triggered flip-flop clocked by my_clk)
+  Endpoint: ifetch_inst/pc_o_reg_0__24_
+            (rising edge-triggered flip-flop clocked by my_clk)
+  Path Group: my_clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ex                 5K_hvratio_1_1        NangateOpenCellLibrary
+  cpu                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clk (rise edge)                            0.000000   0.000000
+  clock network delay (ideal)                         0.000000   0.000000
+  ex_inst/R_4/CK (DFF_X1)                             0.000000   0.000000 r
+  ex_inst/R_4/QN (DFF_X1)                             0.060483   0.060483 r
+  ex_inst/U1925/ZN (AND4_X1)                          0.065303   0.125786 r
+  ex_inst/U3336/ZN (NAND4_X1)                         0.038666   0.164452 f
+  ex_inst/U1101/Z (BUF_X1)                            0.050745   0.215196 f
+  ex_inst/U2180/ZN (OAI21_X2)                         0.060357   0.275553 r
+  ex_inst/oh_dispatch[1] (ex)                         0.000000   0.275553 r
+  U1476/ZN (NAND2_X1)                                 0.035915   0.311468 f
+  U1479/ZN (NAND3_X1)                                 0.031731   0.343199 r
+  U1481/ZN (NAND4_X1)                                 0.040630   0.383829 f
+  U943/ZN (NAND2_X1)                                  0.031715   0.415543 r
+  U928/ZN (AND2_X1)                                   0.044715   0.460259 r
+  U1007/ZN (AND2_X1)                                  0.044261   0.504520 r
+  U1482/ZN (OAI222_X1)                                0.044451   0.548971 f
+  U1489/ZN (AND2_X1)                                  0.043760   0.592730 f
+  U945/ZN (OAI211_X1)                                 0.051129   0.643860 r
+  U1497/Z (MUX2_X1)                                   0.084092   0.727952 f
+  U709/ZN (AND2_X1)                                   0.040378   0.768330 f
+  U708/ZN (NOR2_X1)                                   0.033771   0.802101 r
+  U1518/ZN (OAI211_X1)                                0.035134   0.837235 f
+  U2435/ZN (AND3_X1)                                  0.043769   0.881004 f
+  U1525/Z (MUX2_X1)                                   0.070437   0.951441 r
+  U1528/ZN (NAND2_X1)                                 0.033248   0.984689 f
+  U935/ZN (OR2_X1)                                    0.053475   1.038164 f
+  U936/ZN (OAI211_X1)                                 0.036379   1.074543 r
+  U1546/ZN (NAND4_X1)                                 0.042815   1.117358 f
+  U1547/ZN (NAND4_X1)                                 0.037245   1.154603 r
+  U717/ZN (AND2_X1)                                   0.046757   1.201360 r
+  U1578/ZN (AND2_X2)                                  0.065203   1.266563 r
+  ex_inst/dispatch_threads[0] (ex)                    0.000000   1.266563 r
+  ex_inst/U271/ZN (NOR2_X1)                           0.032502   1.299065 f
+  ex_inst/U3345/ZN (AND2_X2)                          0.044834   1.343898 f
+  ex_inst/U3384/ZN (INV_X1)                           0.044678   1.388577 r
+  ex_inst/U3366/ZN (INV_X1)                           0.040502   1.429079 f
+  ex_inst/U3520/ZN (NAND2_X1)                         0.031839   1.460918 r
+  ex_inst/U1832/ZN (AND4_X1)                          0.061409   1.522328 r
+  ex_inst/U697/ZN (AND4_X1)                           0.067547   1.589875 r
+  ex_inst/U4399/ZN (INV_X1)                           0.036386   1.626261 f
+  ex_inst/U4413/ZN (OR2_X1)                           0.059386   1.685647 f
+  ex_inst/U3657/ZN (OAI21_X1)                         0.034717   1.720364 r
+  ex_inst/U3659/ZN (AOI211_X1)                        0.030776   1.751140 f
+  ex_inst/U2059/ZN (OAI21_X1)                         0.049727   1.800868 r
+  ex_inst/U2058/ZN (INV_X1)                           0.024413   1.825281 f
+  ex_inst/U4081/ZN (NAND2_X1)                         0.026080   1.851361 r
+  ex_inst/U4085/ZN (OAI211_X1)                        0.030863   1.882223 f
+  ex_inst/U4086/ZN (NAND2_X1)                         0.035809   1.918032 r
+  ex_inst/U10330/ZN (OR2_X1)                          0.041288   1.959320 r
+  ex_inst/U133/ZN (AND4_X2)                           0.061594   2.020915 r
+  ex_inst/U2139/ZN (OR2_X2)                           0.059136   2.080050 r
+  ex_inst/U120/ZN (AND3_X1)                           0.070956   2.151006 r
+  ex_inst/U2161/ZN (OAI21_X1)                         0.038132   2.189138 f
+  ex_inst/U8695/ZN (AOI21_X2)                         0.067672   2.256810 r
+  ex_inst/U8702/ZN (OAI21_X1)                         0.034168   2.290978 f
+  ex_inst/U8703/ZN (INV_X1)                           0.031518   2.322495 r
+  ex_inst/U10334/ZN (AND2_X2)                         0.071620   2.394115 r
+  ex_inst/U9147/ZN (OAI21_X1)                         0.041192   2.435307 f
+  ex_inst/U5343/ZN (XNOR2_X1)                         0.054748   2.490054 f
+  ex_inst/U6742/ZN (OAI21_X1)                         0.056742   2.546797 r
+  ex_inst/U9151/ZN (AND2_X1)                          0.050695   2.597492 r
+  ex_inst/jump_addr2ctrl[24] (ex)                     0.000000   2.597492 r
+  U909/ZN (OAI21_X1)                                  0.027088   2.624580 f
+  ifetch_inst/pc_o_reg_0__24_/D (DFF_X1)              0.008556   2.633136 f
+  data arrival time                                              2.633136
+
+  clock my_clk (rise edge)                            2.000000   2.000000
+  clock network delay (ideal)                         0.000000   2.000000
+  ifetch_inst/pc_o_reg_0__24_/CK (DFF_X1)             0.000000   2.000000 r
+  library setup time                                  -0.044456  1.955544
+  data required time                                             1.955544
+  --------------------------------------------------------------------------
+  data required time                                             1.955544
+  data arrival time                                              -2.633136
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                               -0.677592
+
+
+1
