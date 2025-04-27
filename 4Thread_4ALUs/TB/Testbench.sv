@@ -10,7 +10,7 @@ wire [31:0] pc_t1 = Testbench.RISCV_soc_inst.riscv_inst.pc_o[1];
 wire [31:0] pc_t2 = Testbench.RISCV_soc_inst.riscv_inst.pc_o[2];
 wire [31:0] pc_t3 = Testbench.RISCV_soc_inst.riscv_inst.pc_o[3];
 wire [6:0]  oh[NUM_ALUs-1:0] = Testbench.RISCV_soc_inst.riscv_inst.ex_inst.oh_to_ALU[NUM_ALUs-1:0];
-wire jump_en[NUM_ALUs-1:0]   = Testbench.RISCV_soc_inst.riscv_inst.ex_inst.jump_en2ctrl_ALU[NUM_ALUs-1:0];
+wire jump_en[NUM_ALUs-1:0]   = Testbench.RISCV_soc_inst.riscv_inst.ex_inst.jump_en2ctrl[NUM_ALUs-1:0];
 wire [2:0] dispatch_threads[NUM_ALUs-1:0] = Testbench.RISCV_soc_inst.riscv_inst.dispatch_threads[NUM_ALUs-1:0];
 
 //localparam END_PC = 32'h00004000;   
@@ -84,7 +84,7 @@ wire [2:0] dispatch_threads[NUM_ALUs-1:0] = Testbench.RISCV_soc_inst.riscv_inst.
 	real ipc;
 	real branch_taken_rate;
 	initial begin
-		#4500
+		#3500
 		ipc = exec_count * 1.0 / clk_count; 
 		branch_taken_rate = branch_taken_count * 1.0  / exec_count;
 		$display("Total branch count: %0d", branch_taken_count);
@@ -98,16 +98,16 @@ wire [2:0] dispatch_threads[NUM_ALUs-1:0] = Testbench.RISCV_soc_inst.riscv_inst.
 
 
 	initial begin
-		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/bench_t30.hex", Testbench.RISCV_soc_inst.rom_inst.rom_mem[0]);
+		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/bench_t50.hex", Testbench.RISCV_soc_inst.rom_inst.rom_mem[0]);
 	end
 	initial begin
-		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/bench_t50.hex", Testbench.RISCV_soc_inst.rom_inst.rom_mem[1]);
+		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/bench_t70.hex", Testbench.RISCV_soc_inst.rom_inst.rom_mem[1]);
 	end
 	initial begin
-		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/bench_t30.hex", Testbench.RISCV_soc_inst.rom_inst.rom_mem[2]);
+		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/bench_t70.hex", Testbench.RISCV_soc_inst.rom_inst.rom_mem[2]);
 	end
 	initial begin
-		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/bench_t30.hex", Testbench.RISCV_soc_inst.rom_inst.rom_mem[3]);
+		$readmemh("C:/VHDL practice/ECE511 final project/RISCV-main/inst_txt/bench_t90.hex", Testbench.RISCV_soc_inst.rom_inst.rom_mem[3]);
 	end
 
 

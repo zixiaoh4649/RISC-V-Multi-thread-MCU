@@ -4,7 +4,6 @@ module ALU(
 	input wire [31:0] op1,    //op1_ex
 	input wire [31:0] op2,    //op2_ex
 	input wire [4:0]  rd_addr2ex, 
-	input wire        rd_wen,  //rd_wen2ex
 	input wire [6:0]  oh,
 	output reg [4:0]  rd_addr,
 	output reg [31:0] rd_data,
@@ -43,7 +42,7 @@ module ALU(
 	assign op1_rightshift_op2 	= op1 >> op2;
 	wire op1_unsignedless_op2;
 	wire op1_signedless_op2;
-	assign op1_unsignedless_op2 = $unsigned(op1)<$unsigned(op2);
+	assign op1_unsignedless_op2 = (op1)<(op2);
 	assign op1_signedless_op2   = $signed(op1)<$signed(op2);
 
 	
@@ -132,20 +131,7 @@ module ALU(
 			end
 
 			//I type
-			7'd11:begin //LB    ？？？？？
-				case (op2)
-					2'b00: rd_data = op1[7:0];     // 第 0 字节
-					2'b01: rd_data = op1[15:8];    // 第 1 字节
-					2'b10: rd_data = op1[23:16];   // 第 2 字节
-					2'b11: rd_data = op1[31:24];   // 第 3 字节
-				endcase
-				if (rd_data[7] == 1'b1) begin
-					rd_data = {24'hFFFFFF, rd_data}; // 符号位为 1，扩展为负数
-				end else begin
-					rd_data = {24'h000000, rd_data}; // 符号位为 0，扩展为正数
-				end
-				rd_addr    = rd_addr2ex;
-				rd_wen2reg = 1'b1;
+			7'd11:begin //LB    
 			end 
 			7'd12:begin //LH 
 			end

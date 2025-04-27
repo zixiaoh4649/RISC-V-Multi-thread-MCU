@@ -57,7 +57,7 @@
             else if(oh_in[i]== 7'd38 && (wait_cnt_reg[1]>0 || wait_cnt_reg[2]>0 || wait_cnt_reg[3]>0 || wait_cnt_reg[0]>0))begin  //when divisor is occupied and this thread is divide inst
                 weight_comb[i] ='0;
             end
-            else if (oh_in[i]==7'd38 || (oh_in[i]>=7'd3 && oh_in[i]<=7'd10)) begin // division
+            else if (oh_in[i]==7'd38) begin // division 
                 weight_comb[i] = weight_reg[i] + 4;
             end 
             else begin

@@ -8,8 +8,8 @@ module RISCV_soc(
     wire [31:0] rom_ins[NUM_Threads-1:0];
 
 	riscv riscv_inst(
-    	.clki	(clk),
-    	.rsti	(rst),
+    	.clk	(clk),
+    	.rst	(rst),
     	.pc_o	(pc2rom),
     	.rom_ins (rom_ins)
 	);

@@ -1,15 +1,19 @@
 import types::*;
-module pc_reg (
+module ifetch (
 	input wire clk,
 	input wire rst,
 	output reg [31:0] pc_o[NUM_Threads-1:0],
+	input  wire [31:0] rom_ins[NUM_Threads-1:0],
 
-	//jump
+	output reg [31:0] ins[NUM_Threads-1:0],
+    output reg [31:0] pc2id_ex[NUM_Threads-1:0],
 	input wire hold[NUM_Threads-1:0],
+	//jump
 	input wire [31:0] jump_addr[NUM_Threads-1:0],
 	input wire jump_en[NUM_Threads-1:0],
-        input wire [2:0]  dispatch_threads[NUM_ALUs-1:0]
-); 
+    input wire [2:0]  dispatch_threads[NUM_ALUs-1:0]
+	
+);
         integer i;
         integer j;
         logic [2:0] jump_count [NUM_Threads-1:0];
@@ -18,7 +22,7 @@ module pc_reg (
 
         always @(*) begin
             dispatch_all_zero = 1'b1;
-               for (i = 0; i < NUM_Threads; i++) begin
+               for (i = 0; i < NUM_ALUs; i++) begin
                    if (dispatch_threads[i] != 3'd4) begin
                         dispatch_all_zero = 1'b0;
                    end
@@ -38,11 +42,6 @@ module pc_reg (
                         rst_count <= rst_count - 3'd1;
                         end
                 end
-                /*else if(dispatch_all_zero)begin  //2 cycles after reset, pipeline hasn't gone through execute stage(no dispatch)
-                        for(i=0;i<NUM_Threads;i++)begin
-                        pc_o[i] <= pc_o[i] + 3'd4;
-                        end
-                end*/
 
                 else begin
                     for(i=0;i<NUM_Threads;i++)begin
@@ -62,5 +61,17 @@ module pc_reg (
                     end
                 end
 	end
+// output to next stage
+always @(posedge clk)begin
+	for( i = 0; i < NUM_Threads; i++)begin
+		if(rst==1'b0||hold[i])begin 
+			pc2id_ex[i] <= 32'b0;
+			ins[i] <= 32'b0;
+			end else begin
+			pc2id_ex[i] <= pc_o[i];
+			ins[i] <= rom_ins[i];
+		end
+	end
+end
 	
 endmodule

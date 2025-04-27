@@ -1,27 +1,37 @@
 import types::*;
 module id(
-
+    input wire clk,
+	input wire rst,
 	//input from if_id
-	input wire [31:0] ins_addr2id[NUM_Threads-1:0],
 	input wire [31:0] ins[NUM_Threads-1:0],
+	input wire [31:0] pc2id_ex[NUM_Threads-1:0],
 	//between id and regs
 	output reg [4:0] rs1_addr[NUM_Threads-1:0],
 	output reg [4:0] rs2_addr[NUM_Threads-1:0],
 	input wire [31:0] rs1_data[NUM_Threads-1:0],
 	input wire [31:0] rs2_data[NUM_Threads-1:0],
 	
-	//output to id_ex
-	output reg [31:0] op1[NUM_Threads-1:0],
-	output reg [31:0] op2[NUM_Threads-1:0],
-	output reg [31:0] ins2ex[NUM_Threads-1:0],
-	output reg [31:0] ins_addr[NUM_Threads-1:0],
-	output reg [4:0]  rd_addr[NUM_Threads-1:0],    
-	output reg 	      rd_wen[NUM_Threads-1:0],
-	output reg [6:0]  oh[NUM_Threads-1:0]
+	//to ex
+	output reg [31:0] op1_ex[NUM_Threads-1:0],
+	output reg [31:0] op2_ex[NUM_Threads-1:0],
+	output reg [31:0] ins_2ex[NUM_Threads-1:0],
+	output reg [4:0]  rd_addr2ex[NUM_Threads-1:0],
+	output reg [6:0]  oh_2ex[NUM_Threads-1:0],
+	output reg [4:0] rs1_addrtoex[NUM_Threads-1:0],
+	output reg [4:0] rs2_addrtoex[NUM_Threads-1:0],
+    output reg [31:0] pc2ex[NUM_Threads-1:0],
+
+	//hold
+	input wire hold[NUM_Threads-1:0]
 
 			
 );
-	
+	reg [31:0] op1[NUM_Threads-1:0];
+	reg [31:0] op2[NUM_Threads-1:0];
+	reg [4:0]  rd_addr[NUM_Threads-1:0];    
+	reg 	   rd_wen[NUM_Threads-1:0];
+    reg [6:0]  oh[NUM_Threads-1:0];
+
 	logic [6:0]  opcode[NUM_Threads-1:0];
 	logic [4:0]  rd[NUM_Threads-1:0];
 	logic [2:0]  f3[NUM_Threads-1:0];
@@ -50,8 +60,6 @@ module id(
 
 	always @(*) begin
 	for(i=0;i<NUM_Threads;i++)begin	
-		ins2ex[i]  =ins[i];
-		ins_addr[i]=ins_addr2id[i];
 		//default
 		oh[i]      =7'b0;
 		op1[i]		=32'b0;
@@ -74,12 +82,6 @@ module id(
 				rd_wen[i]  =1'b1;				
 			end
 			7'b0000011:begin
-				op1[i]	    =rs1_data[i];
-				op2[i]     =mem_addr[i][1:0]; //byte offset
-				rs1_addr[i]=mem_addr[i][31:2]>>2;
-				rs2_addr[i]=5'b0;
-				rd_addr[i] =rd[i];
-				rd_wen[i]  =1'b1;
 				case(f3[i])
 					3'b000: oh[i] = 7'd11; //LB
 					3'b001: oh[i] = 7'd12; //LH
@@ -116,16 +118,6 @@ module id(
 				endcase
 			end
 
-			7'b1100111:begin
-			oh[i] 		=7'd4;				
-			op1[i]	    =rs1_data[i];
-			op2[i]     ={{20{ins[i][31]}}, ins[i][31:20]};
-			rs1_addr[i]=rs1[i];
-			rs2_addr[i]=5'b0;
-			rd_addr[i] =rd[i];
-			rd_wen[i]  =1'b1;		
-			end
-
 
 
 			//R type
@@ -146,7 +138,12 @@ module id(
 					3'b001: oh[i] =7'd30; //SLL
 					3'b010: oh[i] =7'd31;//SLT						
 					3'b011: oh[i] =7'd32;//SLTU
-					3'b100: oh[i] =7'd33;//XOR
+					3'b100: begin
+						case(f7[i])
+						    7'b0000000: oh[i] =7'd33;//XOR
+							7'b0000001: oh[i] =7'd38;//DIV
+						endcase
+					end
 					3'b101:begin
 						case(f7[i])					
 							7'b0000000: oh[i] =7'd34;//SRL								
@@ -209,9 +206,34 @@ module id(
 				rd_addr[i] =rd[i];
 				rd_wen[i]  =1'b1;
 			end
+                        default: begin
+                        end
 					
 		endcase//type
 	   end// for
 	end//always
-
+// output to next stage
+always @(posedge clk)begin
+	for( i = 0; i < NUM_Threads; i++)begin
+		if(rst==1'b0||hold[i])begin 
+			pc2ex[i] <= 32'b0;
+			op1_ex[i] <= 32'b0;
+			op2_ex[i] <= 32'b0;
+			ins_2ex[i] <= 32'h0;
+			oh_2ex[i] <= 7'b0;
+			rd_addr2ex[i] <=5'b0;
+			rs1_addrtoex[i] <= 5'b0;
+			rs2_addrtoex[i] <= 5'b0;
+			end else begin
+			pc2ex[i] <= pc2id_ex[i];
+			op1_ex[i] <= op1[i];
+			op2_ex[i] <= op2[i];
+			ins_2ex[i] <= ins[i];
+			oh_2ex[i] <= oh[i];
+			rd_addr2ex[i] <= rd_addr[i];
+			rs1_addrtoex[i] <= rs1_addr[i];
+			rs2_addrtoex[i] <= rs2_addr[i];
+		end
+	end
+end
 endmodule

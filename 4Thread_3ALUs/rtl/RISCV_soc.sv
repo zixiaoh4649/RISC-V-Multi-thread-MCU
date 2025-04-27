@@ -10,7 +10,7 @@ module RISCV_soc(
 	riscv riscv_inst(
     	.clki	(clk),
     	.rsti	(rst),
-    	.pc2rom	(pc2rom),
+    	.pc_o	(pc2rom),
     	.rom_ins (rom_ins)
 	);
 

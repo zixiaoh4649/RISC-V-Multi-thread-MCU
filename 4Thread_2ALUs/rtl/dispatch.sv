@@ -3,7 +3,6 @@
     input  wire                      clk,
     input  wire                      rst,
     input  wire [6:0]  oh_in [NUM_Threads-1:0],
-    input wire [31:0]  ins [NUM_Threads-1:0],
     output reg [2:0] dispatch_threads [NUM_ALUs-1:0]
 );
 
@@ -32,7 +31,7 @@
             end
             else begin
                 for (k = 0; k < NUM_Threads; k++) begin
-                    if (ins[k][14:12] == 3'b100 && ins[k][31:25] == 7'b0000001 && oh_in[k]==7'h33)  // division
+                    if (oh_in[k]==7'd38)  // division
                         wait_cnt_reg[k] <= 4'd2;
                     else if (wait_cnt_reg[k] != 0)
                         wait_cnt_reg[k] <= wait_cnt_reg[k] - 1;
@@ -52,10 +51,13 @@
     always_comb begin
         selected_count ='0;
         for (i = 0; i < NUM_Threads; i++) begin
-            if(oh_in[i] == '0 )begin
+            if(oh_in[i] == '0  )begin
                 weight_comb[i] ='0;
             end
-            else if (ins[k][14:12] == 3'b100 && ins[k][31:25] == 7'b0000001 && oh_in[k]==7'h33) begin // division
+            else if(oh_in[i]== 7'd38 && (wait_cnt_reg[1]>0 || wait_cnt_reg[2]>0 || wait_cnt_reg[3]>0 || wait_cnt_reg[0]>0))begin  //when divisor is occupied and this thread is divide inst
+                weight_comb[i] ='0;
+            end
+            else if (oh_in[i]==7'd38 || (oh_in[i]>=7'd3 && oh_in[i]<=7'd10)) begin // division
                 weight_comb[i] = weight_reg[i] + 4;
             end 
             else begin

@@ -1,7 +1,7 @@
 import types::*;
 module riscv(
-    input wire clki,
-    input wire rsti,
+    input wire clk,
+    input wire rst,
     
     output wire [31:0] pc_o[NUM_Threads-1:0],
     input  wire [31:0] rom_ins[NUM_Threads-1:0]
@@ -9,7 +9,6 @@ module riscv(
 
     // dispatch
     wire[2:0]  dispatch_threads[NUM_ALUs-1:0]; 
-    wire [6:0] oh_dispatch[NUM_Threads-1:0];
     //from if_id
     wire [31:0] ins[NUM_Threads-1:0]; 
     wire [31:0] pc2id_ex[NUM_Threads-1:0];
@@ -56,13 +55,16 @@ module riscv(
             end
         end
 	end
-
+    assign dispatch_threads[0] = 3'd0;
+    assign dispatch_threads[1] = 3'd1;
+    assign dispatch_threads[2] = 3'd2;
+    assign dispatch_threads[3] = 3'd3;
 
 
 
     ifetch ifetch_inst (
-        .clk        (clki),
-        .rst        (rsti),
+        .clk        (clk),
+        .rst        (rst),
         .pc_o    (pc_o),
         .rom_ins (rom_ins),
         .ins        (ins),
@@ -73,8 +75,8 @@ module riscv(
         .dispatch_threads(dispatch_threads)
     );
     id id_inst(
-        .clk        (clki),
-        .rst        (rsti),
+        .clk        (clk),
+        .rst        (rst),
 
         .ins        (ins),
         .pc2id_ex   (pc2id_ex),
@@ -98,8 +100,8 @@ module riscv(
 
 
     regs regs_inst(
-	    .clk             (clki),
-	    .rst             (rsti),
+	    .clk             (clk),
+	    .rst             (rst),
 	    .rs1_addr        (rs1_addr_regs),
 	    .rs2_addr        (rs2_addr_regs),
 	    .rd_forward_data (rd_data_o),                     
@@ -110,31 +112,21 @@ module riscv(
     );
     ex ex_inst(
         //input
-            .clk        (clki),
-            .rst        (rsti),
 	    .ins            (ins_ex_i),
 	    .op1            (op1_ex),    
 	    .op2            (op2_ex),    
 	    .rd_addr2ex     (rd_addr_ex),  
 	    .oh             (oh_ex),
-        .rs1_addr       (rs1_addrtoex),
-        .rs2_addr       (rs2_addrtoex),
+        .pc2ex          (pc2ex),
         //output        
 	    .rd_addr        (rd_addr_ex2regs),
 	    .rd_data        (rd_data_o),
 	    .rd_wen2reg     (rd_wen_o),
         .jump_addr2ctrl (jump_addr),
         .jump_en2ctrl   (jump_en),
-        .hold2ctrl      (hold2ctrl),   
-        .dispatch_threads (dispatch_threads),
-        .oh_dispatch    (oh_dispatch),
-        .pc2ex          (pc2ex)
+        .dispatch_threads(dispatch_threads),
+        .hold2ctrl      (hold2ctrl)
     );
-     dispatch dispatch_ex(
-        .clk         (clki),
-        .rst         (rsti),
-        .oh_in    (oh_dispatch),
-        .dispatch_threads(dispatch_threads)
-    );
+
 
 endmodule
