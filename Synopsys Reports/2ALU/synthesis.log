@@ -1,0 +1,970 @@
+Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
+Please use '-no_save' simv switch to avoid this.
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+                 Version W-2024.09 for linux64 - Aug 27, 2024 
+
+                    Copyright (c) 1988 - 2024 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+Current time:       Sun Apr 27 00:17:26 2025
+Hostname:           fastx3-37.ews.illinois.edu
+CPU Model:          Intel(R) Xeon(R) Silver 4216 CPU @ 2.10GHz
+CPU Details:        Cores = 10 : Sockets = 19 : Cache Size = 22528 KB : Freq = 2.10 GHz
+OS:                 Linux 4.18.0-553.50.1.el8_10.x86_64
+RAM:                 23 GB (Free  12 GB)
+Swap:                 7 GB (Free   5 GB)
+Work Filesystem:    /home/chingc5 mounted to ews-homes-inst-prod.engrit.illinois.edu:/ewshomes/fspool-c/chingc5/linux
+Tmp Filesystem:     /tmp mounted to /dev/mapper/fastx3_37_sys-tmp
+Work Disk:           25 GB (Free  24 GB)
+Tmp Disk:            31 GB (Free  30 GB)
+
+CPU Load: 16%, Ram Free: 12 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+source dc_warn.tcl
+if {[getenv ECE411_MIN_POWER] eq "1"} {
+   set power_enable_minpower true
+}
+set hdlin_ff_always_sync_set_reset true
+true
+set hdlin_ff_always_async_set_reset true
+true
+set hdlin_infer_multibit default_all
+default_all
+set hdlin_check_no_latch true
+true
+set hdlin_while_loop_iterations 2000000000
+2000000000
+set_host_options -max_cores [getenv ECE411_DC_CORES]
+1
+set_app_var report_default_significant_digits 6
+6
+set design_toplevel [getenv DESIGN_TOP]
+cpu
+define_design_lib WORK -path ./work
+1
+set alib_library_analysis_path [getenv STD_CELL_ALIB]
+/class/ece411/freepdk-45nm/alib
+set symbol_library [list generic.sdb]
+generic.sdb
+set synthetic_library [list dw_foundation.sldb]
+dw_foundation.sldb
+set target_library [getenv STD_CELL_LIB]
+/class/ece411/freepdk-45nm/stdcells.db
+set sram_library [getenv SRAM_LIB]
+if {$sram_library eq ""} {
+   set link_library [list "*" $target_library $synthetic_library]
+} else {
+   set link_library [list "*" $target_library $synthetic_library $sram_library]
+}
+* /class/ece411/freepdk-45nm/stdcells.db dw_foundation.sldb
+get_license DC-Ultra-Features
+1
+get_license DC-Ultra-Opt
+1
+set pkg_src [getenv PKG_SRCS]
+/home/chingc5/Desktop/mp_pipeline/synth/../pkg/types.sv
+if {$pkg_src ne ""} {
+   analyze -library WORK -format sverilog $pkg_src
+}
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../pkg/types.sv
+Warning:  /home/chingc5/Desktop/mp_pipeline/synth/../pkg/types.sv:2: Parameter keyword used in local parameter declaration. (VER-329)
+Presto compilation completed successfully.
+Loading db file '/class/ece411/freepdk-45nm/stdcells.db'
+Loading db file '/software/Synopsys-2024_x86_64/syn/W-2024.09/libraries/syn/dw_foundation.sldb'
+1
+set modules [split [getenv HDL_SRCS] " "]
+/home/chingc5/Desktop/mp_pipeline/synth/../hdl/id.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/cpu.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/dispatch.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ex_synth_wiothoutdiv.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/regs.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ALU.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ifetch.sv
+foreach module $modules {
+   analyze -library WORK -format sverilog "${module}"
+}
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/id.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/cpu.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/dispatch.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ex_synth_wiothoutdiv.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/regs.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ALU.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ifetch.sv
+Presto compilation completed successfully.
+elaborate $design_toplevel
+Loading db file '/software/Synopsys-2024_x86_64/syn/W-2024.09/libraries/syn/gtech.db'
+Loading db file '/software/Synopsys-2024_x86_64/syn/W-2024.09/libraries/syn/standard.sldb'
+  Loading link library 'NangateOpenCellLibrary'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully. (cpu)
+Module: cpu, Ports: 258, Input: 130, Output: 128, Inout: 0
+Module: cpu, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Module report end. (ELAB-965)
+Elaborated 1 design.
+Current design is now 'cpu'.
+Information: Building the design 'ifetch'. (HDL-193)
+Warning:  /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ifetch.sv:57: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process in routine 'ifetch' in file
+	 /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ifetch.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|      pc_o_reg       | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  |  32  |
+|    rst_count_reg    | Flip-flop |   1   |  N  | Y  | Sync  | Sync  | N  |  32  |
+|   jump_count_reg    | Flip-flop |  12   |  Y  | Y  | None  | None  | N  |  32  |
+|       ins_reg       | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  |  65  |
+|    pc2id_ex_reg     | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  |  65  |
+==================================================================================
+Presto compilation completed successfully. (ifetch)
+Module: ifetch, Ports: 656, Input: 272, Output: 384, Inout: 0
+Module: ifetch, Registers: 399, Async set/reset: 0, Sync set/reset: 387
+Information: Module report end. (ELAB-965)
+Information: Building the design 'id'. (HDL-193)
+
+Statistics for case statements in always block in file
+	'/home/chingc5/Desktop/mp_pipeline/synth/../hdl/id.sv'
+===========================================================
+|    Line    |  full/ parallel  |      block location     |
+===========================================================
+|     72     |    auto/auto     | always block at line 61 |
+|     85     |     no/auto      | always block at line 61 |
+|    100     |    auto/auto     | always block at line 61 |
+|    110     |    auto/auto     | always block at line 61 |
+|    131     |    auto/auto     | always block at line 61 |
+|    133     |    auto/auto     | always block at line 61 |
+|    142     |    auto/auto     | always block at line 61 |
+|    148     |    auto/auto     | always block at line 61 |
+|    168     |     no/auto      | always block at line 61 |
+===========================================================
+
+Inferred memory devices in process in routine 'id' in file
+	 /home/chingc5/Desktop/mp_pipeline/synth/../hdl/id.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|   rd_addr2ex_reg    | Flip-flop |  20   |  Y  | Y  | None  | Sync  | N  | 216  |
+|  rs1_addrtoex_reg   | Flip-flop |  20   |  Y  | Y  | None  | Sync  | N  | 216  |
+|  rs2_addrtoex_reg   | Flip-flop |  20   |  Y  | Y  | None  | Sync  | N  | 216  |
+|      pc2ex_reg      | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  | 216  |
+|     op1_ex_reg      | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  | 216  |
+|     op2_ex_reg      | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  | 216  |
+|     ins_2ex_reg     | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  | 216  |
+|     oh_2ex_reg      | Flip-flop |  20   |  Y  | Y  | Sync  | Sync  | N  | 216  |
+==================================================================================
+Presto compilation completed successfully. (id)
+Module: id, Ports: 1158, Input: 518, Output: 640, Inout: 0
+Module: id, Registers: 600, Async set/reset: 0, Sync set/reset: 604
+Information: Module report end. (ELAB-965)
+Information: Building the design 'regs'. (HDL-193)
+
+Inferred memory devices in process in routine 'regs' in file
+	 /home/chingc5/Desktop/mp_pipeline/synth/../hdl/regs.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|      regs_reg       | Flip-flop | 4096  |  Y  | Y  | None  | Sync  | N  |  55  |
+==================================================================================
+Statistics for MUX_OPs
+======================================================
+| block name/line  | Inputs | Outputs | # sel inputs |
+======================================================
+|     regs/34      |   32   |   32    |      5       |
+|     regs/34      |   32   |   32    |      5       |
+|     regs/34      |   32   |   32    |      5       |
+|     regs/34      |   32   |   32    |      5       |
+|     regs/48      |   32   |   32    |      5       |
+|     regs/48      |   32   |   32    |      5       |
+|     regs/48      |   32   |   32    |      5       |
+|     regs/48      |   32   |   32    |      5       |
+======================================================
+Presto compilation completed successfully. (regs)
+Module: regs, Ports: 450, Input: 194, Output: 256, Inout: 0
+Module: regs, Registers: 4096, Async set/reset: 0, Sync set/reset: 4096
+Information: Module report end. (ELAB-965)
+Information: Building the design 'ex'. (HDL-193)
+Warning:  /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ex_synth_wiothoutdiv.sv:96: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process in routine 'ex' in file
+	 /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ex_synth_wiothoutdiv.sv'.
+===================================================================================
+|    Register Name     |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+===================================================================================
+|     oh_queue_reg     | Flip-flop |  84   |  Y  | Y  | None  | Sync  | N  |  51  |
+|     pc_queue_reg     | Flip-flop |  384  |  Y  | Y  | None  | Sync  | N  |  51  |
+|  rs1_addr_queue_reg  | Flip-flop |  20   |  Y  | Y  | None  | Sync  | N  |  51  |
+|  rs2_addr_queue_reg  | Flip-flop |  20   |  Y  | Y  | None  | Sync  | N  |  51  |
+|    ins_queue_reg     | Flip-flop |  256  |  Y  | Y  | None  | Sync  | N  |  51  |
+|    op1_queue_reg     | Flip-flop |  256  |  Y  | Y  | None  | Sync  | N  |  51  |
+|    op2_queue_reg     | Flip-flop |  256  |  Y  | Y  | None  | Sync  | N  |  51  |
+| rd_addr2ex_queue_reg | Flip-flop |  40   |  Y  | Y  | None  | Sync  | N  |  51  |
+===================================================================================
+Statistics for MUX_OPs
+======================================================
+| block name/line  | Inputs | Outputs | # sel inputs |
+======================================================
+|      ex/443      |   4    |   256   |      2       |
+|      ex/443      |   4    |   14    |      2       |
+|      ex/448      |   4    |   10    |      2       |
+|      ex/443      |   4    |   256   |      2       |
+|      ex/443      |   4    |   14    |      2       |
+|      ex/448      |   4    |   10    |      2       |
+======================================================
+Information:  Complex logic will not be considered for set/reset inference. (ELAB-2008)
+Presto compilation completed successfully. (ex)
+Module: ex, Ports: 924, Input: 608, Output: 316, Inout: 0
+Module: ex, Registers: 1316, Async set/reset: 0, Sync set/reset: 1316
+Information: Module report end. (ELAB-965)
+Information: Building the design 'dispatch'. (HDL-193)
+Warning:  /home/chingc5/Desktop/mp_pipeline/synth/../hdl/dispatch.sv:79: signed to unsigned assignment occurs. (VER-318)
+
+Inferred memory devices in process in routine 'dispatch' in file
+	 /home/chingc5/Desktop/mp_pipeline/synth/../hdl/dispatch.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|  wait_cnt_reg_reg   | Flip-flop |  16   |  Y  | Y  | None  | Sync  | N  |  17  |
+|  dont_dispatch_reg  | Flip-flop |   2   |  Y  | Y  | Sync  | Sync  | N  |  17  |
+|   weight_reg_reg    | Flip-flop |  16   |  Y  | Y  | Sync  | Sync  | N  |  17  |
+==================================================================================
+Presto compilation completed successfully. (dispatch)
+Module: dispatch, Ports: 36, Input: 30, Output: 6, Inout: 0
+Module: dispatch, Registers: 36, Async set/reset: 0, Sync set/reset: 36
+Information: Module report end. (ELAB-965)
+Information: Building the design 'ALU'. (HDL-193)
+Warning:  /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ALU.sv:266: signed to unsigned assignment occurs. (VER-318)
+
+Statistics for case statements in always block in file
+	'/home/chingc5/Desktop/mp_pipeline/synth/../hdl/ALU.sv'
+===========================================================
+|    Line    |  full/ parallel  |      block location     |
+===========================================================
+|     62     |     no/auto      | always block at line 52 |
+===========================================================
+Presto compilation completed successfully. (ALU)
+Module: ALU, Ports: 212, Input: 140, Output: 72, Inout: 0
+Module: ALU, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Module report end. (ELAB-965)
+1
+current_design $design_toplevel
+Current design is 'cpu'.
+{cpu}
+change_names -rules verilog -hierarchy
+1
+check_design
+ 
+****************************************
+check_design summary:
+Version:     W-2024.09
+Date:        Sun Apr 27 00:17:35 2025
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+No issues found.
+--------------------------------------------------------------------------------
+
+1
+set_wire_load_model -name "5K_hvratio_1_1"
+1
+set_wire_load_mode enclosed
+1
+source constraints.sdc
+1
+link
+
+  Linking design 'cpu'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (7 designs)               /home/chingc5/Desktop/mp_pipeline/synth/cpu.db, etc
+  NangateOpenCellLibrary (library)
+                              /class/ece411/freepdk-45nm/stdcells.db
+  dw_foundation.sldb (library)
+                              /software/Synopsys-2024_x86_64/syn/W-2024.09/libraries/syn/dw_foundation.sldb
+
+1
+eval [getenv ECE411_COMPILE_CMD]
+Information: Performing leakage power optimization. (PWR-850)
+CPU Load: 16%, Ram Free: 12 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 4 cores. (OPT-1500)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | W-2024.09-DWBB_202409.0 |     *     |
+| Licensed DW Building Blocks        | W-2024.09-DWBB_202409.0 |     *     |
+============================================================================
+
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler WLM                                                               |
+| Command Line | compile_ultra -retime -gate_clock                                                 |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 11341                                  |
+| Number of User Hierarchies                              | 7                                      |
+| Sequential Cell Count                                   | 6447                                   |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 0                                      |
+| Number of Path Groups                                   | 2                                      |
+| Number of VT Class                                      | 0                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 1100                                   |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 0                                      |
+| Design with UPF Data                                    | false                                  |
+====================================================================================================
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+Information: Retiming is enabled. SVF file must be used for formal verification. (OPT-1210)
+
+
+Information: Uniquified 2 instances of design 'ALU'. (OPT-1056)
+  Simplifying Design 'cpu'
+Information: Performing clock-gating with positive edge logic: 'integrated' and negative edge logic: 'or'. (PWR-1047)
+
+Loaded alib file '/class/ece411/freepdk-45nm/alib/alib-52/stdcells.db.alib'
+Module: DW01_NAND2, Ports: 3, Input: 2, Output: 1, Inout: 0
+Module: DW01_NAND2, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+  Building model 'DW01_NAND2'
+Information: Ungrouping 1 of 155 hierarchies before Pass 1 (OPT-775)
+CPU Load: 16%, Ram Free: 12 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+.
+  Processing 'ex'
+Information: Added key list 'DesignWare' to design 'ex'. (DDB-72)
+  Processing 'regs'
+Information: Added key list 'DesignWare' to design 'regs'. (DDB-72)
+  Processing 'id'
+  Processing 'ifetch'
+Information: Added key list 'DesignWare' to design 'ifetch'. (DDB-72)
+ Implement Synthetic for 'ifetch'.
+  Processing 'ALU_0'
+Information: Added key list 'DesignWare' to design 'ALU_0'. (DDB-72)
+ Implement Synthetic for 'ALU_0'.
+  Processing 'cpu'
+Information: Added key list 'DesignWare' to design 'cpu'. (DDB-72)
+ Implement Synthetic for 'cpu'.
+  Processing 'SNPS_CLOCK_GATE_HIGH_dispatch_0'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_ex_0'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_regs_0'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_ifetch_0'
+  Mapping integrated clock gating circuitry
+CPU Load: 21%, Ram Free: 12 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Performing clock-gating on design id. (PWR-730)
+Information: Performing clock-gating on design ifetch. (PWR-730)
+Information: Performing clock-gating on design cpu. (PWR-730)
+Information: Performing clock-gating on design regs. (PWR-730)
+Information: Performing clock-gating on design ex. (PWR-730)
+CGOPT MAP DEBUG: cgopt_ctxt.target_lib refresh required directly after link: FALSE
+Information: Complementing port 'oh_dispatch[24]' in design 'ex'.
+	 The new name of the port is 'oh_dispatch[24]_BAR'. (OPT-319)
+Information: Complementing port 'oh_dispatch[17]' in design 'ex'.
+	 The new name of the port is 'oh_dispatch[17]_BAR'. (OPT-319)
+Information: Complementing port 'oh_dispatch[10]' in design 'ex'.
+	 The new name of the port is 'oh_dispatch[10]_BAR'. (OPT-319)
+Information: Complementing port 'oh_dispatch[3]' in design 'ex'.
+	 The new name of the port is 'oh_dispatch[3]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[31]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[31]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[30]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[30]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[29]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[29]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[28]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[28]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[27]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[27]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[26]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[26]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[25]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[25]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[24]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[24]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[23]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[23]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[22]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[22]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[21]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[21]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[20]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[20]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[19]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[19]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[18]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[18]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[17]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[17]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[16]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[16]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[15]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[15]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[14]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[14]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[13]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[13]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[12]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[12]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[11]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[11]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[10]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[10]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[9]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[9]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[8]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[8]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[7]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[7]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[6]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[6]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[5]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[5]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[4]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[4]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[3]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[3]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[2]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[2]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[1]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[1]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[0]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[0]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[31]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[31]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[30]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[30]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[29]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[29]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[28]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[28]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[27]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[27]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[26]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[26]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[25]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[25]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[24]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[24]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[23]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[23]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[22]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[22]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[21]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[21]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[20]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[20]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[19]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[19]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[18]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[18]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[17]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[17]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[16]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[16]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[15]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[15]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[14]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[14]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[13]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[13]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[12]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[12]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[11]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[11]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[10]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[10]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[9]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[9]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[8]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[8]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[7]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[7]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[6]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[6]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[5]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[5]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[4]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[4]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[3]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[3]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[2]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[2]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[1]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[1]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[0]' in design 'ALU_1'.
+	 The new name of the port is 'jump_addr2ctrl[0]_BAR'. (OPT-319)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+Information: Ungrouping hierarchy ifetch_inst 'ifetch' #insts = 1164. (OPT-777)
+Information: Ungrouping hierarchy id_inst 'id' #insts = 1505. (OPT-777)
+Information: Ungrouping hierarchy ex_inst/ALU_thread1 'ALU_0' #insts = 1464. (OPT-777)
+  Mapping Optimization (Phase 1)
+  Mapping Optimization (Phase 2)
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:02:20  102203.3      2.80   22024.5     147.6                           2974692.7500      0.00  
+    0:02:29  102110.0      3.60   22486.3     599.3                           2971991.7500      0.00  
+
+  Beginning Constant Register Removal
+  -----------------------------------
+    0:02:52  104893.6      3.75   26423.6     315.6                           3062487.0000      0.00  
+    0:02:57  104893.6      3.75   26423.6     315.6                           3062487.0000      0.00  
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+  Mapping 'ex_DP_OP_102_130_1245_2'
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:03:17   71224.7      2.23   12847.2      58.2                           1504931.1250      0.00  
+    0:03:33   71588.8      1.44    9137.3      50.5                           1517315.5000      0.00  
+    0:03:33   71588.8      1.44    9137.3      50.5                           1517315.5000      0.00  
+    0:03:38   71185.9      1.44    9130.2      50.5                           1518014.8750      0.00  
+    0:03:43   71123.3      1.43    9085.0      50.5                           1516363.1250      0.00  
+    0:03:52   70956.8      1.46    9128.3      50.5                           1511456.3750      0.00  
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:04:02   70505.4      1.45    9088.6      46.1                           1481011.5000      0.00  
+    0:04:11   69979.8      1.45    9058.3      46.1                           1461030.2500      0.00  
+    0:04:13   69684.3      1.45    8967.3      46.1                           1450304.7500      0.00  
+    0:04:18   69577.9      1.42    8737.7      46.1                           1442520.0000      0.00  
+    0:04:21   69518.3      1.42    8713.8      46.1                           1436719.1250      0.00  
+    0:04:24   69423.9      1.42    8704.5      46.1                           1428796.8750      0.00  
+    0:04:27   69392.0      1.42    8703.4      46.1                           1426333.1250      0.00  
+    0:04:27   69392.0      1.42    8703.4      46.1                           1426333.1250      0.00  
+    0:04:27   69392.0      1.42    8703.4      46.1                           1426333.1250      0.00  
+    0:04:27   69392.0      1.42    8703.4      46.1                           1426333.1250      0.00  
+    0:04:30   68732.5      1.41    8688.4       0.0                           1377399.2500      0.00  
+    0:04:30   68732.5      1.41    8688.4       0.0                           1377399.2500      0.00  
+    0:04:35   68919.5      1.34    8428.8      12.2                           1384778.3750      0.00  
+    0:04:35   68919.5      1.34    8428.8      12.2                           1384778.3750      0.00  
+    0:04:35   68930.4      1.33    8379.4      12.2                           1386017.7500      0.00  
+    0:04:35   68930.4      1.33    8379.4      12.2                           1386017.7500      0.00  
+    0:04:37   68946.9      1.33    8369.6      27.5                           1386871.6250      0.00  
+    0:04:37   68946.9      1.33    8369.6      27.5                           1386871.6250      0.00  
+    0:04:42   69128.3      1.24    7883.3     803.9                           1396855.6250      0.00  
+    0:04:42   69128.3      1.24    7883.3     803.9                           1396855.6250      0.00  
+    0:04:44   69176.0      1.24    7845.7     811.4                           1398470.1250      0.00  
+    0:04:44   69176.0      1.24    7845.7     811.4                           1398470.1250      0.00  
+    0:04:50   69370.7      1.20    7692.0    1342.8                           1410299.3750      0.00  
+    0:04:50   69370.7      1.20    7692.0    1342.8                           1410299.3750      0.00  
+    0:04:51   69414.0      1.20    7666.7    1343.3                           1412014.5000      0.00  
+    0:04:51   69414.0      1.20    7666.7    1343.3                           1412014.5000      0.00  
+    0:04:53   69488.2      1.19    7646.6    1408.9                           1418003.2500      0.00  
+    0:04:53   69488.2      1.19    7646.6    1408.9                           1418003.2500      0.00  
+    0:04:53   69492.5      1.19    7646.4    1408.9                           1418125.7500      0.00  
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:04:53   69492.5      1.19    7646.4    1408.9                           1418125.7500      0.00  
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+  Global Optimization (Phase 34)
+    0:04:57   69340.6      1.17    7510.6       0.0 regs_inst/regs_reg_31__0__18_/SE 1409298.7500      0.00  
+    0:04:58   69341.9      1.17    7492.7       0.0                           1409301.6250      0.00  
+    0:04:58   69366.1      1.16    7483.5       0.0                           1410210.7500      0.00  
+    0:05:05   68758.9      1.12    7257.0      47.1 regs_inst/regs_reg_31__2__18_/SE 1398964.1250      0.00  
+    0:05:07   68745.3      1.12    7210.9      47.1                           1397744.0000      0.00  
+    0:05:10   68834.1      1.11    7181.9      48.2                           1401327.2500      0.00  
+    0:05:10   68834.1      1.11    7181.9      48.2                           1401327.2500      0.00  
+    0:05:12   68756.2      1.11    7179.9      47.1                           1394044.5000      0.00  
+    0:05:12   68756.2      1.11    7179.9      47.1                           1394044.5000      0.00  
+    0:05:13   68761.0      1.11    7176.9      47.1                           1394213.7500      0.00  
+    0:05:13   68761.0      1.11    7176.9      47.1                           1394213.7500      0.00  
+    0:05:13   68761.8      1.11    7161.6      47.1                           1394286.8750      0.00  
+    0:05:13   68761.8      1.11    7161.6      47.1                           1394286.8750      0.00  
+    0:05:13   68761.8      1.11    7161.6      47.1                           1394286.8750      0.00  
+    0:05:13   68761.8      1.11    7161.6      47.1                           1394286.8750      0.00  
+    0:05:21   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:21   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:21   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:21   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:21   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:21   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:22   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:22   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:22   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:22   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:22   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:05:25   68944.5      1.08    7027.3     155.8                           1408691.2500      0.00  
+    0:05:30   67098.2      1.11    7325.0     142.6                           1300971.6250      0.00  
+    0:05:32   67143.7      1.09    7258.8     142.6                           1303314.8750      0.00  
+    0:05:34   67128.3      1.09    7253.0     142.6                           1302832.7500      0.00  
+    0:05:36   67105.7      1.09    7254.1     142.6                           1302256.6250      0.00  
+    0:05:38   67090.3      1.09    7265.8     142.6                           1301814.6250      0.00  
+    0:05:38   67090.3      1.09    7265.8     142.6                           1301814.6250      0.00  
+    0:05:40   67083.6      1.09    7213.5      47.1                           1301581.2500      0.00  
+    0:05:47   66966.6      1.09    7196.4      47.1                           1298319.7500      0.00  
+    0:05:49   66953.0      1.09    7144.0       0.0 ex_inst/R_1510/D          1297912.0000      0.00  
+    0:05:51   67009.7      1.07    7091.5      80.0 regs_inst/regs_reg_16__0__29_/SE 1300653.2500      0.00  
+    0:05:53   67037.1      1.07    7065.9      80.0 ex_inst/R_1510/D          1301763.3750      0.00  
+    0:05:55   67091.1      1.06    7035.7     123.8 regs_inst/regs_reg_12__2__26_/SE 1304183.0000      0.00  
+    0:05:56   67121.4      1.06    6973.0     123.8 ex_inst/R_1510/D          1305478.5000      0.00  
+    0:05:58   67141.3      1.03    6790.8     123.8 ex_inst/R_1510/D          1305934.0000      0.00  
+    0:06:00   67125.4      1.03    6759.0       0.0 ex_inst/op2_queue_reg_3__0__17_/D 1304985.3750      0.00  
+    0:06:01   67146.4      1.02    6720.7       0.0 regs_inst/regs_reg_16__2__20_/SE 1305834.0000      0.00  
+    0:06:04   67178.6      1.01    6700.7       0.0 ex_inst/R_1510/D          1307075.3750      0.00  
+    0:06:05   67187.6      1.01    6669.4       0.0 ex_inst/R_1510/D          1307364.0000      0.00  
+    0:06:06   67197.5      1.01    6664.7       0.0                           1307698.2500      0.00  
+    0:06:10   67297.5      1.00    6604.5       1.3                           1315252.1250      0.00  
+    0:06:10   67297.5      1.00    6604.5       1.3                           1315252.1250      0.00  
+    0:06:14   67316.1      1.00    6566.9       1.3                           1316563.0000      0.00  
+    0:06:18   67309.4      1.00    6556.0       1.3                           1316953.5000      0.00  
+    0:06:21   67338.7      1.00    6539.4       1.3                           1318905.8750      0.00  
+    0:06:25   67348.8      1.00    6532.6       1.3                           1319624.0000      0.00  
+    0:06:25   67348.8      1.00    6532.6       1.3                           1319624.0000      0.00  
+    0:06:25   67349.1      1.00    6532.6       1.3                           1319659.8750      0.00  
+    0:06:30   67252.5      1.00    6528.1       0.0                           1313050.7500      0.00  
+CPU Load: 30%, Ram Free: 12 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Loading db file '/class/ece411/freepdk-45nm/stdcells.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+CPU Load: 29%, Ram Free: 12 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Information: Total number of MV cells in the design.
+----------------------------------------------------------------------------------------------------
+ MV Cells                                           Total Number                                   
+----------------------------------------------------------------------------------------------------
+ Level Shifter:                                     0                                             
+ Enable Level Shifter:                              0                                             
+ Isolation Cell:                                    0                                             
+ Retention Cell:                                    0                                             
+ Retention Clamp Cell:                              0                                             
+ Switch Cell:                                       0                                             
+ Always-On Cell:                                    0                                             
+ Repeater Cell:                                     0                                             
+
+----------------------------------------------------------------------------------------------------
+Unmapped MV Cells 
+----------------------------------------------------------------------------------------------------
+0 Isolation Cells are unmapped 
+0 Retention Clamp Cells are unmapped 
+----------------------------------------------------------------------------------------------------
+1
+for {set i 0} {$i < [getenv ECE411_COMPILE_ITER]} {incr i} {
+    eval [getenv ECE411_COMPILE_CMD_INC]
+}
+Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
+Information: Performing leakage power optimization. (PWR-850)
+CPU Load: 29%, Ram Free: 12 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 4 cores. (OPT-1500)
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler                                                                   |
+| Command Line | compile_ultra -retime -incremental -gate_clock                                    |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 33755                                  |
+| Number of User Hierarchies                              | 146                                    |
+| Sequential Cell Count                                   | 6919                                   |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 0                                      |
+| Number of Path Groups                                   | 2                                      |
+| Number of VT Class                                      | 0                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 0                                      |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 143                                    |
+| Design with UPF Data                                    | false                                  |
+====================================================================================================
+Information: Retiming is enabled. SVF file must be used for formal verification. (OPT-1210)
+
+
+
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping  (Incremental)
+  ------------------------
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Performing clock-gating on design cpu. (PWR-730)
+Information: Performing clock-gating on design regs. (PWR-730)
+Information: Performing clock-gating on design ex. (PWR-730)
+CGOPT MAP DEBUG: cgopt_ctxt.target_lib refresh required directly after link: FALSE
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:00:10   67252.5      1.00    6528.1       0.0                           1313050.7500      0.00  
+    0:00:12   67719.6      1.00    6520.8       0.0                           1369680.2500      0.00  
+    0:00:14   67708.4      1.00    6522.2       0.0                           1369300.6250      0.00  
+    0:00:15   67694.6      1.00    6522.9       0.0                           1368955.7500      0.00  
+    0:00:17   67676.8      1.00    6523.4       0.0                           1368471.7500      0.00  
+
+  Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
+  -------------------------------
+
+  Beginning Incremental Implementation Selection
+  ----------------------------------------------
+    0:00:29   67631.0      1.00    6520.8      12.6                           1367681.5000      0.00  
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:00:29   67631.0      1.00    6520.8      12.6                           1367681.5000      0.00  
+    0:00:31   67943.8      1.00    6610.5      12.6                           1384216.8750      0.00  
+    0:00:33   67811.1      1.00    6605.8      12.6                           1377118.3750      0.00  
+    0:00:33   67811.1      1.00    6605.8      12.6                           1377118.3750      0.00  
+    0:00:33   67811.1      1.00    6605.8      12.6                           1377118.3750      0.00  
+    0:00:33   67811.1      1.00    6605.8      12.6                           1377118.3750      0.00  
+    0:00:34   67827.1      0.99    6582.0      12.6                           1377624.2500      0.00  
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:00:34   67826.0      0.99    6582.0      12.6                           1377626.5000      0.00  
+    0:00:34   67832.4      0.99    6582.0      12.6                           1377907.5000      0.00  
+    0:00:34   67831.9      0.99    6582.0      12.6                           1377908.6250      0.00  
+    0:00:36   67832.9      0.99    6582.5      12.6                           1377970.0000      0.00  
+    0:00:36   67832.9      0.99    6582.5      12.6                           1377970.0000      0.00  
+    0:00:38   67777.6      0.99    6581.7       4.7                           1378400.6250      0.00  
+
+
+  Beginning Design Rule Fixing  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:00:39   67777.6      0.99    6581.7       4.7                           1378400.6250      0.00  
+    0:00:41   67796.7      0.99    6555.8       0.0 id_inst/op2_ex_reg_3__21_/SE 1378772.8750      0.00  
+    0:00:44   67807.9      0.98    6536.4       0.0 ex_inst/op1_queue_reg_0__1__13_/SE 1378985.5000      0.00  
+    0:00:44   67809.5      0.98    6535.0       0.0                           1379014.1250      0.00  
+    0:00:47   67785.0      0.98    6788.9       0.0                           1377713.7500      0.00  
+    0:00:47   67785.0      0.98    6788.9       0.0                           1377713.7500      0.00  
+    0:00:47   67785.8      0.98    6788.0       0.0                           1377744.5000      0.00  
+    0:00:47   67785.8      0.98    6788.0       0.0                           1377744.5000      0.00  
+    0:00:49   67799.7      0.98    6774.3       0.0                           1378314.8750      0.00  
+    0:00:49   67790.6      0.98    6771.4       0.0                           1377968.5000      0.00  
+    0:00:51   67789.3      0.98    6763.2       0.0                           1377253.3750      0.00  
+    0:00:51   67786.6      0.98    6762.6       0.0                           1377185.8750      0.00  
+    0:00:53   67782.9      0.98    6768.0       0.0                           1376229.7500      0.00  
+    0:01:01   67807.7      0.96    6650.9       0.0                           1376723.3750      0.00  
+    0:01:11   67824.9      0.95    6555.3       0.0                           1376805.3750      0.00  
+    0:01:13   67844.4      0.95    6541.1       0.0                           1376959.1250      0.00  
+    0:01:15   67867.2      0.95    6530.6       0.0                           1377564.1250      0.00  
+    0:01:17   67877.9      0.95    6519.0       0.0                           1377265.1250      0.00  
+    0:01:19   67878.4      0.95    6508.4       0.0                           1376975.0000      0.00  
+    0:01:20   67880.0      0.95    6492.7       0.0                           1376482.0000      0.00  
+    0:01:22   67885.3      0.95    6485.4       0.0                           1376462.3750      0.00  
+    0:01:23   67896.8      0.95    6477.3       0.0                           1376541.7500      0.00  
+    0:01:25   67902.1      0.95    6468.9       0.0                           1376299.1250      0.00  
+    0:01:26   67902.4      0.95    6464.2       0.0                           1376164.1250      0.00  
+    0:01:28   67910.9      0.95    6458.0       0.0                           1376119.2500      0.00  
+    0:01:29   67914.3      0.95    6452.4       0.0                           1375947.7500      0.00  
+    0:01:31   67915.1      0.95    6449.7       0.0                           1376001.6250      0.00  
+    0:01:33   67926.8      0.95    6442.2       0.0                           1376143.0000      0.00  
+    0:01:34   67942.8      0.95    6437.5       0.0                           1376677.8750      0.00  
+    0:01:36   67947.8      0.95    6422.3       0.0                           1376780.0000      0.00  
+    0:01:38   67946.0      0.95    6417.9       0.0                           1376349.5000      0.00  
+    0:01:39   67946.5      0.95    6415.7       0.0                           1376292.1250      0.00  
+    0:01:41   67963.0      0.95    6409.9       0.0                           1376743.3750      0.00  
+    0:01:42   67960.6      0.95    6406.6       0.0                           1376442.2500      0.00  
+    0:01:44   67963.0      0.95    6403.3       0.0                           1376516.8750      0.00  
+    0:01:46   67964.3      0.95    6400.7       0.0                           1376165.8750      0.00  
+    0:01:49   67969.6      0.95    6398.7       0.0                           1376285.6250      0.00  
+    0:01:52   67971.8      0.95    6390.8       0.0                           1376126.5000      0.00  
+    0:01:53   67975.8      0.95    6387.8       0.0                           1376176.0000      0.00  
+    0:01:56   67990.4      0.95    6386.0       0.0                           1376440.8750      0.00  
+    0:01:58   67999.7      0.95    6381.3       0.0                           1376621.0000      0.00  
+    0:02:00   68000.0      0.95    6378.5       0.0                           1376402.5000      0.00  
+    0:02:02   67997.6      0.95    6375.1       0.0                           1375866.8750      0.00  
+    0:02:05   68051.0      0.95    6371.2       0.0                           1378352.0000      0.00  
+    0:02:06   68052.9      0.95    6369.5       0.0                           1378427.6250      0.00  
+    0:02:08   68040.4      0.95    6398.1       0.0                           1377768.8750      0.00  
+    0:02:08   68040.4      0.95    6398.1       0.0                           1377768.8750      0.00  
+    0:02:08   68042.8      0.95    6396.7       0.0                           1377894.2500      0.00  
+    0:02:08   68042.8      0.95    6396.7       0.0                           1377894.2500      0.00  
+    0:02:12   68047.9      0.94    6376.6       0.0                           1378241.6250      0.00  
+    0:02:12   68047.1      0.94    6376.5       0.0                           1378206.7500      0.00  
+    0:02:14   68050.5      0.94    6372.7       0.0                           1378365.1250      0.00  
+    0:02:14   68044.1      0.94    6371.6       0.0                           1378086.1250      0.00  
+    0:02:16   68048.4      0.94    6387.4       0.0                           1378291.6250      0.00  
+    0:02:16   68045.2      0.94    6386.9       0.0                           1378152.1250      0.00  
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:02:16   68045.2      0.94    6386.9       0.0                           1378152.1250      0.00  
+    0:02:18   68000.5      0.94    6378.1       0.0                           1375767.6250      0.00  
+    0:02:28   67866.4      0.94    6396.3       0.0                           1370422.7500      0.00  
+    0:02:32   67800.7      0.94    6382.9       0.0                           1366471.6250      0.00  
+    0:02:35   67390.8      0.96    6556.8       0.0                           1351485.1250      0.00  
+    0:02:40   67399.6      0.94    6490.1       0.0                           1352002.0000      0.00  
+    0:02:41   67374.9      0.94    6468.7       0.0                           1351428.6250      0.00  
+    0:02:44   67368.8      0.94    6471.8       0.0                           1351328.7500      0.00  
+    0:02:45   67356.8      0.94    6471.2       0.0                           1351060.0000      0.00  
+    0:02:45   67356.8      0.94    6471.2       0.0                           1351060.0000      0.00  
+    0:02:47   67352.5      0.94    6469.1       0.0                           1350779.8750      0.00  
+    0:02:51   67350.1      0.94    6467.4       0.0                           1350627.3750      0.00  
+    0:02:54   67349.9      0.94    6467.1       0.0                           1350639.8750      0.00  
+    0:02:56   67348.0      0.94    6463.3       0.0                           1350576.5000      0.00  
+    0:02:59   67347.2      0.94    6461.9       0.0                           1350584.2500      0.00  
+    0:02:59   67347.2      0.94    6461.9       0.0                           1350584.2500      0.00  
+    0:03:00   67353.6      0.94    6455.0       0.0                           1351020.5000      0.00  
+    0:03:04   67307.0      0.94    6448.0       0.0                           1347320.7500      0.00  
+Loading db file '/class/ece411/freepdk-45nm/stdcells.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+CPU Load: 31%, Ram Free: 12 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Information: Total number of MV cells in the design.
+----------------------------------------------------------------------------------------------------
+ MV Cells                                           Total Number                                   
+----------------------------------------------------------------------------------------------------
+ Level Shifter:                                     0                                             
+ Enable Level Shifter:                              0                                             
+ Isolation Cell:                                    0                                             
+ Retention Cell:                                    0                                             
+ Retention Clamp Cell:                              0                                             
+ Switch Cell:                                       0                                             
+ Always-On Cell:                                    0                                             
+ Repeater Cell:                                     0                                             
+
+----------------------------------------------------------------------------------------------------
+Unmapped MV Cells 
+----------------------------------------------------------------------------------------------------
+0 Isolation Cells are unmapped 
+0 Retention Clamp Cells are unmapped 
+----------------------------------------------------------------------------------------------------
+current_design $design_toplevel
+Current design is 'cpu'.
+{cpu}
+report_area -hier > reports/area.rpt
+report_timing -delay max > reports/timing.rpt
+check_design > reports/check.rpt
+write_file -format ddc -hierarchy -output outputs/synth.ddc
+Writing ddc file 'outputs/synth.ddc'.
+1
+write_file -format verilog -hierarchy -output [format "outputs/%s.gate.v" $design_toplevel]
+Writing verilog file '/home/chingc5/Desktop/mp_pipeline/synth/outputs/cpu.gate.v'.
+1
+exit
+
+Memory usage for this session 473 Mbytes.
+Memory usage for this session including child processes 1221 Mbytes.
+CPU usage for this session 1219 seconds ( 0.34 hours ).
+Elapsed time for this session 605 seconds ( 0.17 hours ).
+
+Thank you...

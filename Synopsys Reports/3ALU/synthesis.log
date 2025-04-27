@@ -1,0 +1,929 @@
+Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
+Please use '-no_save' simv switch to avoid this.
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+                 Version W-2024.09 for linux64 - Aug 27, 2024 
+
+                    Copyright (c) 1988 - 2024 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+Current time:       Sun Apr 27 00:00:15 2025
+Hostname:           fastx3-37.ews.illinois.edu
+CPU Model:          Intel(R) Xeon(R) Silver 4216 CPU @ 2.10GHz
+CPU Details:        Cores = 10 : Sockets = 19 : Cache Size = 22528 KB : Freq = 2.10 GHz
+OS:                 Linux 4.18.0-553.50.1.el8_10.x86_64
+RAM:                 23 GB (Free  12 GB)
+Swap:                 7 GB (Free   5 GB)
+Work Filesystem:    /home/chingc5 mounted to ews-homes-inst-prod.engrit.illinois.edu:/ewshomes/fspool-c/chingc5/linux
+Tmp Filesystem:     /tmp mounted to /dev/mapper/fastx3_37_sys-tmp
+Work Disk:           25 GB (Free  24 GB)
+Tmp Disk:            31 GB (Free  30 GB)
+
+CPU Load: 53%, Ram Free: 12 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+source dc_warn.tcl
+if {[getenv ECE411_MIN_POWER] eq "1"} {
+   set power_enable_minpower true
+}
+set hdlin_ff_always_sync_set_reset true
+true
+set hdlin_ff_always_async_set_reset true
+true
+set hdlin_infer_multibit default_all
+default_all
+set hdlin_check_no_latch true
+true
+set hdlin_while_loop_iterations 2000000000
+2000000000
+set_host_options -max_cores [getenv ECE411_DC_CORES]
+1
+set_app_var report_default_significant_digits 6
+6
+set design_toplevel [getenv DESIGN_TOP]
+cpu
+define_design_lib WORK -path ./work
+1
+set alib_library_analysis_path [getenv STD_CELL_ALIB]
+/class/ece411/freepdk-45nm/alib
+set symbol_library [list generic.sdb]
+generic.sdb
+set synthetic_library [list dw_foundation.sldb]
+dw_foundation.sldb
+set target_library [getenv STD_CELL_LIB]
+/class/ece411/freepdk-45nm/stdcells.db
+set sram_library [getenv SRAM_LIB]
+if {$sram_library eq ""} {
+   set link_library [list "*" $target_library $synthetic_library]
+} else {
+   set link_library [list "*" $target_library $synthetic_library $sram_library]
+}
+* /class/ece411/freepdk-45nm/stdcells.db dw_foundation.sldb
+get_license DC-Ultra-Features
+1
+get_license DC-Ultra-Opt
+1
+set pkg_src [getenv PKG_SRCS]
+/home/chingc5/Desktop/mp_pipeline/synth/../pkg/types.sv
+if {$pkg_src ne ""} {
+   analyze -library WORK -format sverilog $pkg_src
+}
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../pkg/types.sv
+Warning:  /home/chingc5/Desktop/mp_pipeline/synth/../pkg/types.sv:2: Parameter keyword used in local parameter declaration. (VER-329)
+Presto compilation completed successfully.
+Loading db file '/class/ece411/freepdk-45nm/stdcells.db'
+Loading db file '/software/Synopsys-2024_x86_64/syn/W-2024.09/libraries/syn/dw_foundation.sldb'
+1
+set modules [split [getenv HDL_SRCS] " "]
+/home/chingc5/Desktop/mp_pipeline/synth/../hdl/id.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/cpu.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/dispatch.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ex_synth_wiothoutdiv.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/regs.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ALU.sv /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ifetch.sv
+foreach module $modules {
+   analyze -library WORK -format sverilog "${module}"
+}
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/id.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/cpu.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/dispatch.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ex_synth_wiothoutdiv.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/regs.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ALU.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ifetch.sv
+Presto compilation completed successfully.
+elaborate $design_toplevel
+Loading db file '/software/Synopsys-2024_x86_64/syn/W-2024.09/libraries/syn/gtech.db'
+Loading db file '/software/Synopsys-2024_x86_64/syn/W-2024.09/libraries/syn/standard.sldb'
+  Loading link library 'NangateOpenCellLibrary'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully. (cpu)
+Module: cpu, Ports: 258, Input: 130, Output: 128, Inout: 0
+Module: cpu, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Module report end. (ELAB-965)
+Elaborated 1 design.
+Current design is now 'cpu'.
+Information: Building the design 'ifetch'. (HDL-193)
+Warning:  /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ifetch.sv:57: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process in routine 'ifetch' in file
+	 /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ifetch.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|      pc_o_reg       | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  |  32  |
+|    rst_count_reg    | Flip-flop |   1   |  N  | Y  | Sync  | Sync  | N  |  32  |
+|   jump_count_reg    | Flip-flop |  12   |  Y  | Y  | None  | None  | N  |  32  |
+|       ins_reg       | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  |  65  |
+|    pc2id_ex_reg     | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  |  65  |
+==================================================================================
+Presto compilation completed successfully. (ifetch)
+Module: ifetch, Ports: 659, Input: 275, Output: 384, Inout: 0
+Module: ifetch, Registers: 399, Async set/reset: 0, Sync set/reset: 387
+Information: Module report end. (ELAB-965)
+Information: Building the design 'id'. (HDL-193)
+
+Statistics for case statements in always block in file
+	'/home/chingc5/Desktop/mp_pipeline/synth/../hdl/id.sv'
+===========================================================
+|    Line    |  full/ parallel  |      block location     |
+===========================================================
+|     72     |    auto/auto     | always block at line 61 |
+|     85     |     no/auto      | always block at line 61 |
+|    100     |    auto/auto     | always block at line 61 |
+|    110     |    auto/auto     | always block at line 61 |
+|    131     |    auto/auto     | always block at line 61 |
+|    133     |    auto/auto     | always block at line 61 |
+|    142     |    auto/auto     | always block at line 61 |
+|    148     |    auto/auto     | always block at line 61 |
+|    168     |     no/auto      | always block at line 61 |
+===========================================================
+
+Inferred memory devices in process in routine 'id' in file
+	 /home/chingc5/Desktop/mp_pipeline/synth/../hdl/id.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|   rd_addr2ex_reg    | Flip-flop |  20   |  Y  | Y  | None  | Sync  | N  | 216  |
+|  rs1_addrtoex_reg   | Flip-flop |  20   |  Y  | Y  | None  | Sync  | N  | 216  |
+|  rs2_addrtoex_reg   | Flip-flop |  20   |  Y  | Y  | None  | Sync  | N  | 216  |
+|      pc2ex_reg      | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  | 216  |
+|     op1_ex_reg      | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  | 216  |
+|     op2_ex_reg      | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  | 216  |
+|     ins_2ex_reg     | Flip-flop |  128  |  Y  | Y  | None  | Sync  | N  | 216  |
+|     oh_2ex_reg      | Flip-flop |  20   |  Y  | Y  | Sync  | Sync  | N  | 216  |
+==================================================================================
+Presto compilation completed successfully. (id)
+Module: id, Ports: 1158, Input: 518, Output: 640, Inout: 0
+Module: id, Registers: 600, Async set/reset: 0, Sync set/reset: 604
+Information: Module report end. (ELAB-965)
+Information: Building the design 'regs'. (HDL-193)
+
+Inferred memory devices in process in routine 'regs' in file
+	 /home/chingc5/Desktop/mp_pipeline/synth/../hdl/regs.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|      regs_reg       | Flip-flop | 4096  |  Y  | Y  | None  | Sync  | N  |  55  |
+==================================================================================
+Statistics for MUX_OPs
+======================================================
+| block name/line  | Inputs | Outputs | # sel inputs |
+======================================================
+|     regs/34      |   32   |   32    |      5       |
+|     regs/34      |   32   |   32    |      5       |
+|     regs/34      |   32   |   32    |      5       |
+|     regs/34      |   32   |   32    |      5       |
+|     regs/48      |   32   |   32    |      5       |
+|     regs/48      |   32   |   32    |      5       |
+|     regs/48      |   32   |   32    |      5       |
+|     regs/48      |   32   |   32    |      5       |
+======================================================
+Presto compilation completed successfully. (regs)
+Module: regs, Ports: 450, Input: 194, Output: 256, Inout: 0
+Module: regs, Registers: 4096, Async set/reset: 0, Sync set/reset: 4096
+Information: Module report end. (ELAB-965)
+Information: Building the design 'ex'. (HDL-193)
+Warning:  /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ex_synth_wiothoutdiv.sv:96: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process in routine 'ex' in file
+	 /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ex_synth_wiothoutdiv.sv'.
+===================================================================================
+|    Register Name     |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+===================================================================================
+|     oh_queue_reg     | Flip-flop |  84   |  Y  | Y  | None  | Sync  | N  |  51  |
+|     pc_queue_reg     | Flip-flop |  384  |  Y  | Y  | None  | Sync  | N  |  51  |
+|  rs1_addr_queue_reg  | Flip-flop |  20   |  Y  | Y  | None  | Sync  | N  |  51  |
+|  rs2_addr_queue_reg  | Flip-flop |  20   |  Y  | Y  | None  | Sync  | N  |  51  |
+|    ins_queue_reg     | Flip-flop |  256  |  Y  | Y  | None  | Sync  | N  |  51  |
+|    op1_queue_reg     | Flip-flop |  256  |  Y  | Y  | None  | Sync  | N  |  51  |
+|    op2_queue_reg     | Flip-flop |  256  |  Y  | Y  | None  | Sync  | N  |  51  |
+| rd_addr2ex_queue_reg | Flip-flop |  40   |  Y  | Y  | None  | Sync  | N  |  51  |
+===================================================================================
+Statistics for MUX_OPs
+======================================================
+| block name/line  | Inputs | Outputs | # sel inputs |
+======================================================
+|      ex/443      |   4    |   256   |      2       |
+|      ex/443      |   4    |   14    |      2       |
+|      ex/448      |   4    |   10    |      2       |
+|      ex/443      |   4    |   256   |      2       |
+|      ex/443      |   4    |   14    |      2       |
+|      ex/448      |   4    |   10    |      2       |
+|      ex/443      |   4    |   256   |      2       |
+|      ex/443      |   4    |   14    |      2       |
+|      ex/448      |   4    |   10    |      2       |
+======================================================
+Information:  Complex logic will not be considered for set/reset inference. (ELAB-2008)
+Presto compilation completed successfully. (ex)
+Module: ex, Ports: 927, Input: 611, Output: 316, Inout: 0
+Module: ex, Registers: 1316, Async set/reset: 0, Sync set/reset: 1316
+Information: Module report end. (ELAB-965)
+Module: ex, Elapsed Time: 00:00:05, CPU Time: 00:00:05, Total Mem: 302.45 MB, Mem: 100.29 MB, Time: Sun Apr 27 00:00:22 2025
+Information: Building the design 'dispatch'. (HDL-193)
+Warning:  /home/chingc5/Desktop/mp_pipeline/synth/../hdl/dispatch.sv:79: signed to unsigned assignment occurs. (VER-318)
+
+Inferred memory devices in process in routine 'dispatch' in file
+	 /home/chingc5/Desktop/mp_pipeline/synth/../hdl/dispatch.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|  wait_cnt_reg_reg   | Flip-flop |  16   |  Y  | Y  | None  | Sync  | N  |  17  |
+|  dont_dispatch_reg  | Flip-flop |   2   |  Y  | Y  | Sync  | Sync  | N  |  17  |
+|   weight_reg_reg    | Flip-flop |  16   |  Y  | Y  | Sync  | Sync  | N  |  17  |
+==================================================================================
+Presto compilation completed successfully. (dispatch)
+Module: dispatch, Ports: 39, Input: 30, Output: 9, Inout: 0
+Module: dispatch, Registers: 36, Async set/reset: 0, Sync set/reset: 36
+Information: Module report end. (ELAB-965)
+Information: Building the design 'ALU'. (HDL-193)
+Warning:  /home/chingc5/Desktop/mp_pipeline/synth/../hdl/ALU.sv:266: signed to unsigned assignment occurs. (VER-318)
+
+Statistics for case statements in always block in file
+	'/home/chingc5/Desktop/mp_pipeline/synth/../hdl/ALU.sv'
+===========================================================
+|    Line    |  full/ parallel  |      block location     |
+===========================================================
+|     62     |     no/auto      | always block at line 52 |
+===========================================================
+Presto compilation completed successfully. (ALU)
+Module: ALU, Ports: 212, Input: 140, Output: 72, Inout: 0
+Module: ALU, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Module report end. (ELAB-965)
+1
+current_design $design_toplevel
+Current design is 'cpu'.
+{cpu}
+change_names -rules verilog -hierarchy
+1
+check_design
+ 
+****************************************
+check_design summary:
+Version:     W-2024.09
+Date:        Sun Apr 27 00:00:23 2025
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+No issues found.
+--------------------------------------------------------------------------------
+
+1
+set_wire_load_model -name "5K_hvratio_1_1"
+1
+set_wire_load_mode enclosed
+1
+source constraints.sdc
+1
+link
+
+  Linking design 'cpu'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (7 designs)               /home/chingc5/Desktop/mp_pipeline/synth/cpu.db, etc
+  NangateOpenCellLibrary (library)
+                              /class/ece411/freepdk-45nm/stdcells.db
+  dw_foundation.sldb (library)
+                              /software/Synopsys-2024_x86_64/syn/W-2024.09/libraries/syn/dw_foundation.sldb
+
+1
+eval [getenv ECE411_COMPILE_CMD]
+Information: Performing leakage power optimization. (PWR-850)
+CPU Load: 60%, Ram Free: 11 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 4 cores. (OPT-1500)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | W-2024.09-DWBB_202409.0 |     *     |
+| Licensed DW Building Blocks        | W-2024.09-DWBB_202409.0 |     *     |
+============================================================================
+
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler WLM                                                               |
+| Command Line | compile_ultra -retime -gate_clock                                                 |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 12069                                  |
+| Number of User Hierarchies                              | 8                                      |
+| Sequential Cell Count                                   | 6447                                   |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 0                                      |
+| Number of Path Groups                                   | 2                                      |
+| Number of VT Class                                      | 0                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 1318                                   |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 0                                      |
+| Design with UPF Data                                    | false                                  |
+====================================================================================================
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+Information: Retiming is enabled. SVF file must be used for formal verification. (OPT-1210)
+
+
+Information: Uniquified 3 instances of design 'ALU'. (OPT-1056)
+  Simplifying Design 'cpu'
+Information: Performing clock-gating with positive edge logic: 'integrated' and negative edge logic: 'or'. (PWR-1047)
+
+Loaded alib file '/class/ece411/freepdk-45nm/alib/alib-52/stdcells.db.alib'
+Module: DW01_NAND2, Ports: 3, Input: 2, Output: 1, Inout: 0
+Module: DW01_NAND2, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+  Building model 'DW01_NAND2'
+Information: Ungrouping 1 of 156 hierarchies before Pass 1 (OPT-775)
+CPU Load: 56%, Ram Free: 12 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+.
+  Processing 'ex'
+Information: Added key list 'DesignWare' to design 'ex'. (DDB-72)
+  Processing 'regs'
+Information: Added key list 'DesignWare' to design 'regs'. (DDB-72)
+  Processing 'id'
+  Processing 'ifetch'
+Information: Added key list 'DesignWare' to design 'ifetch'. (DDB-72)
+ Implement Synthetic for 'ifetch'.
+  Processing 'ALU_0'
+Information: Added key list 'DesignWare' to design 'ALU_0'. (DDB-72)
+ Implement Synthetic for 'ALU_0'.
+  Processing 'cpu'
+Information: Added key list 'DesignWare' to design 'cpu'. (DDB-72)
+ Implement Synthetic for 'cpu'.
+  Processing 'SNPS_CLOCK_GATE_HIGH_dispatch_0'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_ex_0'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_regs_0'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_ifetch_0'
+  Mapping integrated clock gating circuitry
+CPU Load: 46%, Ram Free: 11 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Performing clock-gating on design id. (PWR-730)
+Information: Performing clock-gating on design ifetch. (PWR-730)
+Information: Performing clock-gating on design cpu. (PWR-730)
+Information: Performing clock-gating on design regs. (PWR-730)
+Information: Performing clock-gating on design ex. (PWR-730)
+CGOPT MAP DEBUG: cgopt_ctxt.target_lib refresh required directly after link: FALSE
+Information: Complementing port 'oh_dispatch[24]' in design 'ex'.
+	 The new name of the port is 'oh_dispatch[24]_BAR'. (OPT-319)
+Information: Complementing port 'oh_dispatch[10]' in design 'ex'.
+	 The new name of the port is 'oh_dispatch[10]_BAR'. (OPT-319)
+Information: Complementing port 'oh_dispatch[3]' in design 'ex'.
+	 The new name of the port is 'oh_dispatch[3]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[31]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[31]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[30]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[30]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[29]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[29]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[28]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[28]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[27]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[27]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[26]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[26]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[25]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[25]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[24]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[24]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[23]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[23]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[22]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[22]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[21]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[21]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[20]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[20]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[19]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[19]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[18]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[18]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[17]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[17]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[16]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[16]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[15]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[15]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[14]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[14]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[13]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[13]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[12]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[12]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[11]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[11]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[10]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[10]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[9]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[9]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[8]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[8]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[7]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[7]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[6]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[6]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[5]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[5]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[4]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[4]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[3]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[3]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[2]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[2]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[1]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[1]_BAR'. (OPT-319)
+Information: Complementing port 'jump_addr2ctrl[0]' in design 'ALU_0'.
+	 The new name of the port is 'jump_addr2ctrl[0]_BAR'. (OPT-319)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+Information: Ungrouping hierarchy ifetch_inst 'ifetch' #insts = 1175. (OPT-777)
+Information: Ungrouping hierarchy id_inst 'id' #insts = 1505. (OPT-777)
+Information: Ungrouping hierarchy ex_inst/ALU_thread2 'ALU_0' #insts = 1464. (OPT-777)
+  Mapping Optimization (Phase 1)
+  Mapping Optimization (Phase 2)
+  Mapping Optimization (Phase 3)
+  Mapping Optimization (Phase 4)
+  Mapping Optimization (Phase 5)
+  Mapping Optimization (Phase 6)
+  Mapping Optimization (Phase 7)
+  Mapping Optimization (Phase 8)
+  Mapping Optimization (Phase 9)
+  Mapping Optimization (Phase 10)
+  Mapping Optimization (Phase 11)
+  Mapping Optimization (Phase 12)
+  Mapping Optimization (Phase 13)
+  Mapping Optimization (Phase 14)
+  Mapping Optimization (Phase 15)
+  Mapping Optimization (Phase 16)
+  Mapping Optimization (Phase 17)
+  Mapping Optimization (Phase 18)
+  Mapping Optimization (Phase 19)
+  Mapping Optimization (Phase 20)
+  Mapping Optimization (Phase 21)
+  Mapping Optimization (Phase 22)
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:04:35  116655.1      3.01   25185.6     179.7                           3485995.5000      0.00  
+    0:04:43  116520.5      3.12   25735.1     271.1                           3481642.7500      0.00  
+
+  Beginning Constant Register Removal
+  -----------------------------------
+    0:04:52  118568.4      3.82   28434.1     201.9                           3587864.5000      0.00  
+    0:04:59  118567.1      3.82   28434.0     201.9                           3587829.7500      0.00  
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+  Mapping 'ex_DW01_add_5'
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:05:23   75455.7      2.62   16160.3     229.8                           1610213.7500      0.00  
+    0:05:41   76089.6      1.88   12226.0     219.1                           1642717.8750      0.00  
+    0:05:41   76089.6      1.88   12226.0     219.1                           1642717.8750      0.00  
+    0:05:43   76086.9      1.87   12218.9     219.1                           1642819.0000      0.00  
+    0:05:49   76027.3      1.87   12218.9     219.1                           1641206.5000      0.00  
+    0:05:58   75568.2      1.98   12599.1     219.1                           1628109.5000      0.00  
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:06:08   75177.5      1.98   12554.2     208.1                           1598634.2500      0.00  
+    0:06:12   74681.9      1.96   12483.6     208.1                           1579416.8750      0.00  
+    0:06:20   74158.9      1.95   12466.7     208.1                           1560347.5000      0.00  
+    0:06:25   74088.2      1.91   12227.2     208.1                           1555945.2500      0.00  
+    0:06:27   74031.5      1.91   12185.6     208.1                           1551672.7500      0.00  
+    0:06:31   73996.9      1.91   12148.3     208.1                           1548785.5000      0.00  
+    0:06:36   73942.1      1.91   12141.9     208.1                           1543784.6250      0.00  
+    0:06:36   73942.1      1.91   12141.9     208.1                           1543784.6250      0.00  
+    0:06:36   73942.1      1.91   12141.9     208.1                           1543784.6250      0.00  
+    0:06:36   73942.1      1.91   12141.9     208.1                           1543784.6250      0.00  
+    0:06:38   73296.3      1.91   12186.4     167.9                           1493782.6250      0.00  
+    0:06:38   73296.3      1.91   12186.4     167.9                           1493782.6250      0.00  
+    0:06:43   73508.3      1.84   11827.2     171.1                           1502081.5000      0.00  
+    0:06:44   73508.3      1.84   11827.2     171.1                           1502081.5000      0.00  
+    0:06:44   73512.8      1.84   11786.4     171.1                           1502308.3750      0.00  
+    0:06:44   73512.8      1.84   11786.4     171.1                           1502308.3750      0.00  
+    0:06:47   73584.6      1.81   11624.3     171.1                           1505173.7500      0.00  
+    0:06:47   73584.6      1.81   11624.3     171.1                           1505173.7500      0.00  
+    0:07:02   73732.8      1.70   11012.4     171.8                           1515475.6250      0.00  
+    0:07:02   73732.8      1.70   11012.4     171.8                           1515475.6250      0.00  
+    0:07:03   73744.5      1.70   11011.9     171.8                           1516030.7500      0.00  
+    0:07:03   73744.5      1.70   11011.9     171.8                           1516030.7500      0.00  
+    0:07:05   73754.4      1.69   10954.8     171.8                           1517100.1250      0.00  
+    0:07:05   73754.4      1.69   10954.8     171.8                           1517100.1250      0.00  
+    0:07:06   73754.6      1.69   10947.0     171.8                           1517134.2500      0.00  
+    0:07:06   73754.6      1.69   10947.0     171.8                           1517134.2500      0.00  
+    0:07:11   73784.7      1.68   10899.5     167.9                           1519489.5000      0.00  
+    0:07:11   73784.7      1.68   10899.5     167.9                           1519489.5000      0.00  
+    0:07:12   73784.7      1.68   10892.6     167.9                           1519582.7500      0.00  
+
+
+  Beginning Design Rule Fixing  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:07:12   73784.7      1.68   10892.6     167.9                           1519582.7500      0.00  
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+  Global Optimization (Phase 34)
+    0:07:16   73795.3      1.65   10735.7       0.0                           1519407.7500      0.00  
+    0:07:17   73835.5      1.65   10732.6       0.0                           1520760.0000      0.00  
+    0:07:28   72954.8      1.64   10589.5       0.0 ex_inst/pc_queue_reg_3__0__8_/SE 1504825.8750      0.00  
+    0:07:31   72954.8      1.62   10487.9       0.0 id_inst/op2_ex_reg_0__20_/SE 1504139.3750      0.00  
+    0:07:31   72950.2      1.62   10477.4       0.0                           1503707.8750      0.00  
+    0:07:33   72950.2      1.62   10470.0       0.0                           1503766.3750      0.00  
+    0:07:33   72950.2      1.62   10470.0       0.0                           1503766.3750      0.00  
+    0:07:35   72929.0      1.62   10467.4       0.0                           1499632.5000      0.00  
+    0:07:35   72929.0      1.62   10467.4       0.0                           1499632.5000      0.00  
+    0:07:36   72933.7      1.62   10464.7       0.0                           1499798.7500      0.00  
+    0:07:36   72933.7      1.62   10464.7       0.0                           1499798.7500      0.00  
+    0:07:36   72934.5      1.62   10463.5       0.0                           1499850.3750      0.00  
+    0:07:36   72934.5      1.62   10463.5       0.0                           1499850.3750      0.00  
+    0:07:37   72935.1      1.61   10446.1       0.0                           1499902.1250      0.00  
+    0:07:37   72935.1      1.61   10446.1       0.0                           1499902.1250      0.00  
+    0:07:39   72965.9      1.61   10395.2       0.0                           1502514.3750      0.00  
+    0:07:39   72965.9      1.61   10395.2       0.0                           1502514.3750      0.00  
+    0:07:40   72973.4      1.61   10405.6       0.0                           1502825.8750      0.00  
+    0:07:40   72973.4      1.61   10405.6       0.0                           1502825.8750      0.00  
+    0:07:43   72995.5      1.59   10249.2       0.0                           1503888.7500      0.00  
+    0:07:43   72995.5      1.59   10249.2       0.0                           1503888.7500      0.00  
+    0:07:44   72995.5      1.59   10249.2       0.0                           1503888.7500      0.00  
+    0:07:44   72995.5      1.59   10249.2       0.0                           1503888.7500      0.00  
+    0:07:44   72995.5      1.59   10249.2       0.0                           1503888.7500      0.00  
+    0:07:44   72995.5      1.59   10249.2       0.0                           1503888.7500      0.00  
+    0:07:44   72995.5      1.59   10249.2       0.0                           1503888.7500      0.00  
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:07:47   72995.5      1.59   10249.2       0.0                           1503888.7500      0.00  
+    0:07:52   71260.3      1.63   10676.6       0.0                           1393457.2500      0.00  
+    0:07:55   71281.4      1.61   10635.7       0.0                           1394773.1250      0.00  
+    0:07:57   71260.1      1.61   10629.3       0.0                           1394193.3750      0.00  
+    0:07:59   71252.4      1.61   10615.3       0.0                           1394030.7500      0.00  
+    0:08:01   71235.9      1.61   10611.6       0.0                           1393680.8750      0.00  
+    0:08:02   71232.9      1.61   10611.6       0.0                           1393616.5000      0.00  
+    0:08:02   71232.9      1.61   10611.6       0.0                           1393616.5000      0.00  
+    0:08:04   71240.4      1.61   10530.1       0.0                           1394240.6250      0.00  
+    0:08:12   71168.3      1.61   10482.3       0.0                           1392293.3750      0.00  
+    0:08:14   71140.9      1.61   10480.2       0.0                           1391086.2500      0.00  
+    0:08:21   71393.1      1.57   10242.4       0.0                           1408581.5000      0.00  
+    0:08:21   71393.1      1.57   10242.4       0.0                           1408581.5000      0.00  
+    0:08:24   71426.9      1.57   10200.3       0.0                           1410435.5000      0.00  
+    0:08:28   71505.1      1.57   10160.1       0.0                           1415820.1250      0.00  
+    0:08:33   71533.3      1.57   10143.7       0.0                           1417699.3750      0.00  
+    0:08:36   71534.1      1.57   10142.8       0.0                           1417718.8750      0.00  
+    0:08:36   71534.1      1.57   10142.8       0.0                           1417718.8750      0.00  
+    0:08:36   71535.9      1.57   10142.5       0.0                           1417812.2500      0.00  
+    0:08:41   71387.5      1.57   10140.0       0.0                           1405746.5000      0.00  
+CPU Load: 30%, Ram Free: 11 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Loading db file '/class/ece411/freepdk-45nm/stdcells.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+CPU Load: 29%, Ram Free: 11 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Information: Total number of MV cells in the design.
+----------------------------------------------------------------------------------------------------
+ MV Cells                                           Total Number                                   
+----------------------------------------------------------------------------------------------------
+ Level Shifter:                                     0                                             
+ Enable Level Shifter:                              0                                             
+ Isolation Cell:                                    0                                             
+ Retention Cell:                                    0                                             
+ Retention Clamp Cell:                              0                                             
+ Switch Cell:                                       0                                             
+ Always-On Cell:                                    0                                             
+ Repeater Cell:                                     0                                             
+
+----------------------------------------------------------------------------------------------------
+Unmapped MV Cells 
+----------------------------------------------------------------------------------------------------
+0 Isolation Cells are unmapped 
+0 Retention Clamp Cells are unmapped 
+----------------------------------------------------------------------------------------------------
+1
+for {set i 0} {$i < [getenv ECE411_COMPILE_ITER]} {incr i} {
+    eval [getenv ECE411_COMPILE_CMD_INC]
+}
+Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
+Information: Performing leakage power optimization. (PWR-850)
+CPU Load: 29%, Ram Free: 11 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 4 cores. (OPT-1500)
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler                                                                   |
+| Command Line | compile_ultra -retime -incremental -gate_clock                                    |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 37382                                  |
+| Number of User Hierarchies                              | 147                                    |
+| Sequential Cell Count                                   | 6732                                   |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 0                                      |
+| Number of Path Groups                                   | 2                                      |
+| Number of VT Class                                      | 0                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 0                                      |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 143                                    |
+| Design with UPF Data                                    | false                                  |
+====================================================================================================
+Information: Retiming is enabled. SVF file must be used for formal verification. (OPT-1210)
+
+
+
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping  (Incremental)
+  ------------------------
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Performing clock-gating on design cpu. (PWR-730)
+Information: Performing clock-gating on design regs. (PWR-730)
+Information: Performing clock-gating on design ex. (PWR-730)
+CGOPT MAP DEBUG: cgopt_ctxt.target_lib refresh required directly after link: FALSE
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:00:10   71387.5      1.57   10140.0       0.0                           1405746.5000      0.00  
+    0:00:12   71704.8      1.57   10134.0       0.1                           1442469.1250      0.00  
+    0:00:14   71695.8      1.57   10136.4       0.1                           1442208.1250      0.00  
+    0:00:15   71684.6      1.57   10129.5       0.1                           1441790.2500      0.00  
+    0:00:17   71682.2      1.57   10131.9       0.1                           1441722.5000      0.00  
+    0:00:18   71677.7      1.57   10131.1       0.1                           1441598.3750      0.00  
+
+  Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
+  -------------------------------
+
+  Beginning Incremental Implementation Selection
+  ----------------------------------------------
+    0:00:53   71699.2      1.57   10122.2     199.5                           1442445.0000      0.00  
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:00:53   71699.2      1.57   10122.2     199.5                           1442445.0000      0.00  
+    0:00:57   71708.8      1.57   10122.5     199.5                           1442951.5000      0.00  
+    0:00:59   71708.0      1.57   10119.4     199.5                           1442991.3750      0.00  
+    0:00:59   71708.0      1.57   10119.4     199.5                           1442991.3750      0.00  
+    0:00:59   71708.5      1.57   10117.8     199.5                           1443036.8750      0.00  
+    0:00:59   71708.5      1.57   10117.8     199.5                           1443036.8750      0.00  
+    0:01:01   71723.7      1.57   10116.2     199.5                           1443633.0000      0.00  
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:01:01   71709.9      1.56   10115.7     199.5                           1443631.2500      0.00  
+    0:01:03   71730.9      1.56   10102.1     199.5                           1444558.2500      0.00  
+    0:01:03   71702.2      1.56   10099.4     199.5                           1443433.7500      0.00  
+    0:01:04   71779.6      1.56   10105.0     247.4                           1446337.3750      0.00  
+    0:01:04   71766.8      1.56   10103.1     247.4                           1446364.3750      0.00  
+    0:01:07   71772.1      1.56   10103.1     247.4                           1446689.2500      0.00  
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:01:07   71772.1      1.56   10103.1     247.4                           1446689.2500      0.00  
+    0:01:11   71767.1      1.54    9974.7       0.0 ex_inst/ins_queue_reg_2__0__9_/SE 1445487.7500      0.00  
+    0:01:15   71794.7      1.53    9891.7       0.0 ex_inst/op2_queue_reg_2__0__26_/SE 1445930.0000      0.00  
+    0:01:18   71809.9      1.52    9864.8       0.0 ex_inst/op1_queue_reg_1__0__13_/SE 1446001.5000      0.00  
+    0:01:20   71828.8      1.51    9799.0       0.0 ex_inst/ins_queue_reg_2__0__9_/SE 1446499.8750      0.00  
+    0:01:25   71847.7      1.50    9720.2       0.0 ex_inst/ins_queue_reg_2__0__9_/SE 1446966.8750      0.00  
+    0:01:31   71866.8      1.48    9623.1       0.0 ex_inst/ins_queue_reg_2__0__9_/SE 1447295.6250      0.00  
+    0:01:33   71870.0      1.48    9559.0       0.0                           1447301.1250      0.00  
+    0:01:35   71859.6      1.48    9558.8       0.0                           1446778.3750      0.00  
+    0:01:35   71859.6      1.48    9558.8       0.0                           1446778.3750      0.00  
+    0:01:35   71861.5      1.47    9557.0       0.0                           1446833.6250      0.00  
+    0:01:35   71861.5      1.47    9557.0       0.0                           1446833.6250      0.00  
+    0:01:40   71928.3      1.45    9424.4       0.0                           1450684.2500      0.00  
+    0:01:43   71896.3      1.45    9390.3       0.0                           1449958.6250      0.00  
+    0:01:57   71987.8      1.45    9388.9     110.1                           1455250.8750      0.00  
+    0:01:58   71974.0      1.45    9387.2     108.4                           1455212.0000      0.00  
+    0:02:05   72205.7      1.44    9388.2     729.5                           1466508.7500      0.00  
+    0:02:19   72236.0      1.42    9233.9     729.2                           1466981.5000      0.00  
+    0:02:28   72258.6      1.40    9154.9     729.2                           1467563.0000      0.00  
+    0:02:31   72245.9      1.40    9142.6     729.2                           1466872.1250      0.00  
+    0:02:32   72219.3      1.40    9125.0     729.2                           1466190.6250      0.00  
+    0:02:34   72218.7      1.40    9110.3     729.2                           1466070.8750      0.00  
+    0:02:37   72230.4      1.40    9081.0     729.2                           1466513.2500      0.00  
+    0:02:39   72225.4      1.40    9067.4     729.2                           1465989.8750      0.00  
+    0:02:41   72225.6      1.40    9054.6     729.1                           1465277.1250      0.00  
+    0:02:42   72225.9      1.40    9042.4     565.9                           1465181.6250      0.00  
+    0:02:44   72227.5      1.40    9038.0     565.9                           1465294.7500      0.00  
+    0:02:45   72232.0      1.40    9030.5     565.9                           1465181.8750      0.00  
+    0:02:47   72233.4      1.40    9019.8     565.9                           1464997.3750      0.00  
+    0:02:49   72247.7      1.40    9009.0     565.9                           1465673.0000      0.00  
+    0:02:51   72257.6      1.40    8999.2     565.9                           1465867.1250      0.00  
+    0:02:53   72270.6      1.40    8987.2     565.9                           1466407.6250      0.00  
+    0:02:55   72297.2      1.40    8972.5     565.9                           1467713.1250      0.00  
+    0:02:58   72313.2      1.40    8956.7     565.9                           1467566.5000      0.00  
+    0:03:01   72337.6      1.40    8934.3     565.9                           1468864.5000      0.00  
+    0:03:04   72339.0      1.40    8922.9     565.9                           1467996.5000      0.00  
+    0:03:05   72352.0      1.40    8912.4     565.9                           1468452.3750      0.00  
+    0:03:08   72365.6      1.40    8902.5     565.9                           1468828.5000      0.00  
+    0:03:11   72376.5      1.40    8899.3     565.9                           1468990.6250      0.00  
+    0:03:14   72386.6      1.40    8889.2     565.9                           1469062.1250      0.00  
+    0:03:16   72391.1      1.40    8886.6     565.9                           1469219.0000      0.00  
+    0:03:18   72396.2      1.40    8881.4     565.9                           1469284.7500      0.00  
+    0:03:20   72399.6      1.40    8872.9     565.9                           1469244.7500      0.00  
+    0:03:22   72396.2      1.40    8858.4     565.9                           1469014.2500      0.00  
+    0:03:25   72403.3      1.40    8855.7     565.9                           1469204.5000      0.00  
+    0:03:27   72403.6      1.40    8851.9     565.9                           1468977.8750      0.00  
+    0:03:30   72404.7      1.40    8847.4     565.9                           1468796.1250      0.00  
+    0:03:31   72406.8      1.40    8844.9     565.9                           1468624.0000      0.00  
+    0:03:34   72406.3      1.40    8843.0     565.9                           1468558.6250      0.00  
+    0:03:35   72406.3      1.40    8842.4     565.9                           1468569.8750      0.00  
+    0:03:38   72304.7      1.40    8829.7     493.3                           1463066.1250      0.00  
+    0:03:38   72304.7      1.40    8829.7     493.3                           1463066.1250      0.00  
+    0:03:38   72304.1      1.40    8835.3     493.3                           1462933.0000      0.00  
+    0:03:38   72304.1      1.40    8835.3     493.3                           1462933.0000      0.00  
+    0:03:42   72322.5      1.39    8815.5     493.3                           1464321.0000      0.00  
+    0:03:42   72321.4      1.39    8815.5     493.3                           1464323.2500      0.00  
+    0:03:42   72325.1      1.39    8815.4     493.3                           1464423.3750      0.00  
+    0:03:42   72324.1      1.39    8815.4     493.3                           1464425.6250      0.00  
+    0:03:44   72332.3      1.38    8814.1     493.3                           1464816.7500      0.00  
+    0:03:45   72327.0      1.38    8814.1     493.3                           1464827.8750      0.00  
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:03:45   72327.0      1.38    8814.1     493.3                           1464827.8750      0.00  
+    0:03:47   72325.4      1.38    8814.0     493.3                           1464741.7500      0.00  
+    0:03:55   72207.6      1.38    8819.0     493.3                           1461534.1250      0.00  
+    0:04:01   72057.0      1.38    8761.2       0.0 ex_inst/pc_queue_reg_3__0__25_/SE 1452832.3750      0.00  
+    0:04:05   72070.8      1.37    8718.9       0.0 ex_inst/op2_queue_reg_2__0__25_/SE 1453051.3750      0.00  
+    0:04:08   72074.3      1.37    8717.4       0.0 ex_inst/op2_queue_reg_2__0__2_/SE 1453151.2500      0.00  
+    0:04:11   72080.9      1.36    8707.8       0.0 ex_inst/op2_queue_reg_2__0__9_/D 1453435.8750      0.00  
+    0:04:11   72079.9      1.36    8707.4       0.0                           1453410.7500      0.00  
+    0:04:15   71671.3      1.38    8976.6       0.0                           1441104.0000      0.00  
+    0:04:19   71687.0      1.37    8942.8       0.0                           1441247.0000      0.00  
+    0:04:21   71671.3      1.37    8931.7       0.0                           1440918.1250      0.00  
+    0:04:23   71667.0      1.37    8925.0       0.0                           1440822.0000      0.00  
+    0:04:24   71655.1      1.37    8924.5       0.0                           1440599.7500      0.00  
+    0:04:27   71651.1      1.37    8922.4       0.0                           1440500.0000      0.00  
+    0:04:27   71651.1      1.37    8922.4       0.0                           1440500.0000      0.00  
+    0:04:31   71649.0      1.37    8920.8       0.0                           1440357.7500      0.00  
+    0:04:33   71647.1      1.37    8920.4       0.0                           1440257.2500      0.00  
+    0:04:36   71646.8      1.37    8920.3       0.0                           1440181.7500      0.00  
+    0:04:40   71645.0      1.37    8919.6       0.0                           1440116.6250      0.00  
+    0:04:40   71645.0      1.37    8919.6       0.0                           1440116.6250      0.00  
+    0:04:41   71664.4      1.37    8914.3       0.0                           1442025.5000      0.00  
+    0:04:47   71633.0      1.37    8910.6       0.0                           1440002.7500      0.00  
+Loading db file '/class/ece411/freepdk-45nm/stdcells.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+CPU Load: 28%, Ram Free: 11 GB, Swap Free: 5 GB, Work Disk Free: 24 GB, Tmp Disk Free: 30 GB
+Information: Total number of MV cells in the design.
+----------------------------------------------------------------------------------------------------
+ MV Cells                                           Total Number                                   
+----------------------------------------------------------------------------------------------------
+ Level Shifter:                                     0                                             
+ Enable Level Shifter:                              0                                             
+ Isolation Cell:                                    0                                             
+ Retention Cell:                                    0                                             
+ Retention Clamp Cell:                              0                                             
+ Switch Cell:                                       0                                             
+ Always-On Cell:                                    0                                             
+ Repeater Cell:                                     0                                             
+
+----------------------------------------------------------------------------------------------------
+Unmapped MV Cells 
+----------------------------------------------------------------------------------------------------
+0 Isolation Cells are unmapped 
+0 Retention Clamp Cells are unmapped 
+----------------------------------------------------------------------------------------------------
+current_design $design_toplevel
+Current design is 'cpu'.
+{cpu}
+report_area -hier > reports/area.rpt
+report_timing -delay max > reports/timing.rpt
+check_design > reports/check.rpt
+write_file -format ddc -hierarchy -output outputs/synth.ddc
+Writing ddc file 'outputs/synth.ddc'.
+1
+write_file -format verilog -hierarchy -output [format "outputs/%s.gate.v" $design_toplevel]
+Writing verilog file '/home/chingc5/Desktop/mp_pipeline/synth/outputs/cpu.gate.v'.
+1
+exit
+
+Memory usage for this session 586 Mbytes.
+Memory usage for this session including child processes 1228 Mbytes.
+CPU usage for this session 1890 seconds ( 0.53 hours ).
+Elapsed time for this session 840 seconds ( 0.23 hours ).
+
+Thank you...
